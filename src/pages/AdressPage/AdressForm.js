@@ -2,9 +2,7 @@ import React from "react"
 import { useNavigate } from "react-router"
 import useForm from "../../hooks/useForm"
 import { addAdress } from "../../services/user"
-import { StyledButton, StyledInput } from "./styles"
-
-
+import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const AdressForm = () => {
     const { form, onChangeInput, clear } = useForm(
@@ -27,7 +25,7 @@ const AdressForm = () => {
 
 
     return (
-        <div>
+        <DivForm>
             <form onSubmit={onSubmitForm}>
                 <StyledInput
                     name='street'
@@ -100,12 +98,11 @@ const AdressForm = () => {
                 />
 
                 <StyledButton color='secondary' variant="contained" type="submit">
-                    Salvar
+                    <b>Salvar</b>
                 </StyledButton>
 
             </form>
-
-        </div>
+        </DivForm>
     )
 
 }
