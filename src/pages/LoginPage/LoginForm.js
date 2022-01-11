@@ -2,7 +2,7 @@ import React from "react"
 import useForm from "../../hooks/useForm"
 import { useNavigate } from "react-router"
 import { login } from "../../services/user"
-import { StyledButton, StyledInput } from "./styles"
+import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const LoginForm = () => {
     const { form, onChangeInput, clear } = useForm({ email: '', password: '' })
@@ -15,7 +15,7 @@ const LoginForm = () => {
 
 
     return(
-        <div>
+        <DivForm>
             <form onSubmit={onSubmitForm}>
                 <StyledInput
                     name='email'
@@ -23,7 +23,7 @@ const LoginForm = () => {
                     onChange={onChangeInput}
                     id="outlined-basic"
                     label="E-mail"
-                    variant="outlined" />
+                    variant="outlined"/>
 
                 <StyledInput
                     name='password'
@@ -31,11 +31,11 @@ const LoginForm = () => {
                     onChange={onChangeInput}
                     id="outlined-basic"
                     label="Senha"
-                    variant="outlined" />
+                    variant="outlined"/>
 
-                <StyledButton color='secondary' variant="contained" type="submit">Login</StyledButton>
+                <StyledButton color='secondary' variant="contained" type="submit"><b>Entrar</b></StyledButton>
             </form>
-        </div>
+        </DivForm>
     )
 }
 

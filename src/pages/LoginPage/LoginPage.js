@@ -2,19 +2,21 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { goToSignUp } from "../../router/coordinator";
 import LoginForm from "./LoginForm";
+import logo from "../../assets/logo-future-eats-2.png"
+import { MainContainer } from "./styles";
 
 const LoginPage = () => {
     const navigate = useNavigate()
 
-
     return (
-        <div>
-            <h1>LoginPage</h1>
+        <MainContainer>
+            <img src={logo}/>
+            <p><b>Entrar</b></p>
             <LoginForm />
             <div onClick={() => goToSignUp(navigate)}>
-                Não possui cadastro? Clique aqui.
+                <p><b>Não possui cadastro? Clique aqui.</b></p>
             </div>
-        </div>
+        </MainContainer>
     )
 }
 

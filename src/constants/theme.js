@@ -11,10 +11,10 @@ const theme = createTheme({
             main: secondaryColor
         },
         text:{
-            primary: neutralColor
+            primary: primaryColor
         },
         error: {
-            main: errorColor
+            main: primaryColor
         }
     }
 })

@@ -1,13 +1,16 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
+import logo from "../../assets/logo-future-eats-2.png"
+import { MainContainer } from "./styles";
 
 const SignUpPage = () => {
     
     return (
-        <div>
-            <h1>SignUpPage</h1>
+        <MainContainer>
+            <img src={logo}/>
+            <p><b>Cadastrar</b></p>
             <SignUpForm/>
-        </div>
+        </MainContainer>
     )
 }
 
