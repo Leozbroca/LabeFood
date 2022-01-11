@@ -23,7 +23,9 @@ const LoginForm = () => {
                     onChange={onChangeInput}
                     id="outlined-basic"
                     label="E-mail"
-                    variant="outlined"/>
+                    variant="outlined"
+                    required />
+
 
                 <StyledInput
                     name='password'
@@ -31,7 +33,8 @@ const LoginForm = () => {
                     onChange={onChangeInput}
                     id="outlined-basic"
                     label="Senha"
-                    variant="outlined"/>
+                    variant="outlined"
+                    required />
 
                 <StyledButton color='secondary' variant="contained" type="submit"><b>Entrar</b></StyledButton>
             </form>

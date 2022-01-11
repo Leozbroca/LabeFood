@@ -59,4 +59,8 @@ export const MainContainer = styled.div`
     text-align: center;
     color: #000;
   }
+  margin: 8px 0 0;
+  padding: 19px 48px 19px 16px;
+  border-radius: 2px;
+  border: solid 1px #b8b8b8;
 `
