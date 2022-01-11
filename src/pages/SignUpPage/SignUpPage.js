@@ -1,15 +1,18 @@
 import React from "react";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import SignUpForm from "./SignUpForm";
+import logo from "../../assets/logo-future-eats-2.png"
+import { MainContainer } from "./styles";
 
 const SignUpPage = () => {
     useUnprotectedPage()
     
     return (
-        <div>
-            <h1>SignUpPage</h1>
+        <MainContainer>
+            <img src={logo}/>
+            <p><b>Cadastrar</b></p>
             <SignUpForm/>
-        </div>
+        </MainContainer>
     )
 }
 
