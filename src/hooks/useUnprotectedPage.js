@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { goToFeed } from "../routes/cordinator";
+// import { goToFeed } from "../routes/cordinator";
 
 const useUnprotectedPage = () => {
     const navigate = useNavigate()
@@ -8,9 +8,9 @@ const useUnprotectedPage = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        if (token) (
-            goToFeed(navigate)
-        )
+        if (token) {
+            // goToFeed(navigate)
+        }
 
     }, [navigate])
 }

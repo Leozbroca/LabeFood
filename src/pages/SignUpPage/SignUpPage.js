@@ -1,7 +1,9 @@
 import React from "react";
+import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import SignUpForm from "./SignUpForm";
 
 const SignUpPage = () => {
+    useUnprotectedPage()
     
     return (
         <div>

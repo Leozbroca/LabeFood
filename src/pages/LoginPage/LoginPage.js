@@ -1,10 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { goToSignUp } from "../../router/coordinator";
 import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
+    useUnprotectedPage()
     const navigate = useNavigate()
+
 
 
     return (
