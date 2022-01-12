@@ -50,3 +50,18 @@ axios
     })
 
 }
+
+// export const getProfile = (token) => {
+//     axios
+//     .get(`${BASE_URL}/profile`, {
+//         header: {
+//             auth: token
+//         }
+//     })
+//     .then ( res => {
+//         console.log(res.data)
+//     })
+//     .catch ( err => {
+//         console.log(err.response.data.message)
+//     })
+// }
