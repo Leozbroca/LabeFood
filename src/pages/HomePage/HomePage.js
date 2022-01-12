@@ -1,37 +1,171 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
+import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import { TextField, Typography, InputAdornment } from '@material-ui/core';
+import useForm from "../../hooks/useForm"
+import SearchIcon from '@material-ui/icons/Search';
+
 
 const HomePage = () => {
     useProtectedPage()
     const navigate = useNavigate()
-    const {restaurants} = useContext(GlobalStateContext)
+    const { restaurants } = useContext(GlobalStateContext)
+    const { form, onChangeInput, clear } = useForm({ restaurante: '' })
+    const [ text, setText ] = useState('')
+    const [ control, setControl ] = useState(0)
 
-   const listaRestaurantes = restaurants.map((restaurante) => {
-       return (
-        <DivTest key={restaurante.id}>
-            <DivImagem src={restaurante.logoUrl}/>
-            <DivNome >{restaurante.name}</DivNome>
-            <EsperaEFrete>
-                <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
-                <div>Frete R${restaurante.shipping},00</div>
-                <button onClick={() => {goToRestaurant(navigate, restaurante.id)}}>TESTE</button>
-            </EsperaEFrete>
-            
-        </DivTest> 
-       )
-   })
+
+    const goToRestDetails = (id) => {
+        goToRestaurant(navigate, id)
+    }
+
+    const onChangeText = (value) => {
+        setText(value)
+        switch (value) {
+            case 'Árabe':
+                if (control === 1) {
+                    setControl(0)
+                } else {
+                    setControl(1)
+                }
+                break
+            case 'Asiática':
+                if (control === 2) {
+                    setControl(0)
+                } else {
+                    setControl(2)
+                }
+                break
+            case 'Hamburguer':
+                if (control === 3) {
+                    setControl(0)
+                } else {
+                    setControl(3)
+                }
+                break
+            case 'Italiana':
+                if (control === 4) {
+                    setControl(0)
+                } else {
+                    setControl(4)
+                }
+                break
+            case 'Sorvetes':
+                if (control === 5) {
+                    setControl(0)
+                } else {
+                    setControl(5)
+                }
+                break
+            case 'Carnes':
+                if (control === 6) {
+                    setControl(0)
+                } else {
+                    setControl(6)
+                }
+                break
+            case 'Baiana':
+                if (control === 7) {
+                    setControl(0)
+                } else {
+                    setControl(7)
+                }
+                break
+            case 'Petiscos':
+                if (control === 8) {
+                    setControl(0)
+                } else {
+                    setControl(8)
+                }
+                break
+            case 'Mexicana':
+                if (control === 9) {
+                    setControl(0)
+                } else {
+                    setControl(9)
+                }
+                break
+            default:
+                setControl(0)
+        }
+    }
+    const renderRestaurant = () => {
+        if (control === 0) {
+            const listaRestaurantes = restaurants.filter((item) => {
+                return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
+            }).map((restaurante) => {
+                return (
+                    <DivTest key={restaurante.id} onClick={() => { goToRestDetails(restaurante.id) }}>
+                        <DivImagem src={restaurante.logoUrl} />
+                        <DivNome ><b>{restaurante.name}</b></DivNome>
+                        <EsperaEFrete>
+                            <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
+                            <div>Frete R${restaurante.shipping},00</div>
+                            {/* <button onClick={() => { goToRestDetails(restaurante.id) }}>TESTE</button> */}
+                        </EsperaEFrete>
+                    </DivTest>
+                )
+            })
+            return listaRestaurantes
+        } else {
+            const listaRestaurantes = restaurants.filter((item) => {
+                return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
+            }).filter((restaurant) => {
+                return text == restaurant.category
+            }).map((restaurante) => {
+                return (
+                    <DivTest key={restaurante.id} onClick={() => { goToRestDetails(restaurante.id) }}>
+                        <DivImagem src={restaurante.logoUrl} />
+                        <DivNome ><b>{restaurante.name}</b></DivNome>
+                        <EsperaEFrete>
+                            <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
+                            <div>Frete R${restaurante.shipping},00</div>
+                            {/* <button onClick={() => { goToRestDetails(restaurante.id) }}>TESTE</button> */}
+                        </EsperaEFrete>
+                    </DivTest>
+                )
+            })
+            return listaRestaurantes
+        }
+    }
+
 
     return (
-        <div>
-            <h1>HomePage</h1>
+        <MainContainer>
+            <h4><b>Future Eats</b></h4>
+            <form>
+            <StyledInput
+                name='restaurante'
+                value={form.restaurante}
+                onChange={onChangeInput}
+                id="outlined-basic"
+                label="Restaurante"
+                variant="outlined"
+                required 
+                InputProps={{
+                    startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
+                  }}
+                />
+            </form> 
+            {form.restaurante === '' ? <DivCategories>
+                <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
+                <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>
+                <Typography color={control === 3 ? 'secondary' : 'primary'} onClick={() => onChangeText('Hamburguer')}><b>Hamburguer</b></Typography>
+                <Typography color={control === 4 ? 'secondary' : 'primary'} onClick={() => onChangeText('Italiana')}><b>Italiana</b></Typography>
+                <Typography color={control === 5 ? 'secondary' : 'primary'} onClick={() => onChangeText('Sorvetes')}><b>Sorvetes</b></Typography>
+                <Typography color={control === 6 ? 'secondary' : 'primary'} onClick={() => onChangeText('Carnes')}><b>Carnes</b></Typography>
+                <Typography color={control === 7 ? 'secondary' : 'primary'} onClick={() => onChangeText('Baiana')}><b>Baiana</b></Typography>
+                <Typography color={control === 8 ? 'secondary' : 'primary'} onClick={() => onChangeText('Petiscos')}><b>Petiscos</b></Typography>
+                <Typography color={control === 9 ? 'secondary' : 'primary'} onClick={() => onChangeText('Mexicana')}><b>Mexicana</b></Typography>
+            </DivCategories> : <div></div>}
+
             <DivCentralizando>
-                {listaRestaurantes}
-            </DivCentralizando>   
-        </div>
+                {renderRestaurant()}
+            </DivCentralizando>
+        </MainContainer>
     )
 }
 
