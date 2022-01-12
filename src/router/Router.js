@@ -30,7 +30,7 @@ const Router = () => {
 
                 <Route path='/editadress' element={<EditAdressPage />} />
 
-                <Route path='/restaurant/:restId' element={<RestaurantPage />} />
+                <Route path='/restaurants/:restId' element={<RestaurantPage />} />
 
                 <Route path='/profile' element={<ProfilePage />} />
 

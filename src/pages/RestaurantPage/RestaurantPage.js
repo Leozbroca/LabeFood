@@ -1,20 +1,73 @@
 import React from "react";
 import { useParams } from "react-router";
-import { getRestaurantDetails } from "../../services/restaurant";
-const RestaurantPage = () => {
-    const restId = useParams()
-    const token = localStorage.getItem('token')
+import useProtectedPage from "../../hooks/useProtectedPage";
+import BASE_URL from "../../constants/url";
+import useRequestData from "../../hooks/useRequestData";
+import { ContainerRestaurant, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
+import CardProduct from "../../components/CardProduct/CardProduct";
 
-    const restDetails = () => {
-        getRestaurantDetails(restId, token)
+
+
+const RestaurantPage = () => {
+    useProtectedPage()
+    const params = useParams()
+    const restaurantDetails = useRequestData([], `${BASE_URL}/restaurants/${params.restId}`)
+    const details = restaurantDetails.restaurant
+    console.log(details)
+
+    const categories = details && details.products.map((product) => {
+            return product.category
+        })
+    console.log('aa', categories)
+
+    const filterCategories = categories && categories.filter((cate, index) => {
+        return categories.indexOf(cate) === index;
+    })
+    console.log('categorias filtradas', filterCategories)
+
+
+    const renderProducts = () => {
+        const categoriesRender = 
+        filterCategories && 
+        filterCategories.map((categorie) => {
+            return (
+                <div key={Math.random()}>
+                    <hr />
+                    <p><b>{categorie}</b></p>
+                    {details &&
+                        details.products.map((prod) => {
+                            if (categorie === prod.category) {
+                                return (
+                                    <CardProduct product={prod} key={prod.id}/>
+                                )
+                            }
+                        })}
+                </div>
+            )
+        })
+
+        return categoriesRender
     }
 
-    return (
 
-        <div>
-            <h1>RestaurantPage</h1>
-            {restDetails()}
-        </div>
+    return (
+        <ContainerRestaurant>
+            <DivTest>
+                <DivImagem src={details && details.logoUrl} />
+                <DivNome>{details && details.name}</DivNome>
+                <EsperaEFrete>
+                    <div>{details && details.category}</div>
+                </EsperaEFrete>
+                <EsperaEFrete>
+                    <div>{details && details.deliveryTime - 10} - {details && details.deliveryTime} min</div>
+                    <div>Frete R${details && details.shipping},00</div>
+                </EsperaEFrete>
+                <EsperaEFrete>
+                    <div>{details && details.address}</div>
+                </EsperaEFrete>
+            </DivTest>
+            {renderProducts()}
+        </ContainerRestaurant>
     )
 }
 

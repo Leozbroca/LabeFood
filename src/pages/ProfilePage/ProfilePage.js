@@ -1,21 +1,23 @@
-import React from "react";
-import { getProfile } from "../../services/user";
+// import React from "react";
+// import useProtectedPage from "../../hooks/useProtectedPage";
+// import { getProfile } from "../../services/user";
 
-const ProfilePage = () => {
+// const ProfilePage = () => {
+//     useProtectedPage()
 
-    const token = localStorage.getItem('token')
+//     const token = localStorage.getItem('token')
 
-    // const userProfile = () => {
-    //     const profile = getProfile(token)  
-    // }
+//     // const userProfile = () => {
+//     //     const profile = getProfile(token)  
+//     // }
 
 
-    return (
-        <div>
-            <h1>ProfilePage</h1>
+//     return (
+//         <div>
+//             <h1>ProfilePage</h1>
             
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
-export default ProfilePage;
+// export default ProfilePage;

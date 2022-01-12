@@ -23,7 +23,7 @@ export const goToEditAdress = (navigate) => {
 }
 
 export const goToRestaurant = (navigate, restId) => {
-    navigate(`/restaurant/${restId}`)
+    navigate(`/restaurants/${restId}`)
 }
 
 export const goToProfile = (navigate) => {
