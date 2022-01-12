@@ -12,6 +12,7 @@ export const MainContainer = styled.div`
 
 export const DivCategories = styled.div`
     display: flex;
+    margin-top: 10px;
     width: 80vw;
     max-width: 328px;
     overflow: auto;
@@ -40,6 +41,7 @@ export const DivTest = styled.div`
     border: 1px solid #b8b8b8;
     border-radius: 8px;
     margin-bottom:10px;
+    cursor: pointer;
 `
 
 export const DivImagem = styled.img`

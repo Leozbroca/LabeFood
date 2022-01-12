@@ -5,6 +5,7 @@ import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, Div
 import { goToRestaurant } from "../../router/coordinator";
 import { TextField, Typography, InputAdornment } from '@material-ui/core';
 import useForm from "../../hooks/useForm"
+import SearchIcon from '@material-ui/icons/Search';
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -138,9 +139,13 @@ const HomePage = () => {
                 id="outlined-basic"
                 label="Restaurante"
                 variant="outlined"
-                required />
+                required 
+                InputProps={{
+                    startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
+                  }}
+                />
             </form> 
-            <DivCategories>
+            {form.restaurante === '' ? <DivCategories>
                 <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
                 <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>
                 <Typography color={control === 3 ? 'secondary' : 'primary'} onClick={() => onChangeText('Hamburguer')}><b>Hamburguer</b></Typography>
@@ -150,7 +155,7 @@ const HomePage = () => {
                 <Typography color={control === 7 ? 'secondary' : 'primary'} onClick={() => onChangeText('Baiana')}><b>Baiana</b></Typography>
                 <Typography color={control === 8 ? 'secondary' : 'primary'} onClick={() => onChangeText('Petiscos')}><b>Petiscos</b></Typography>
                 <Typography color={control === 9 ? 'secondary' : 'primary'} onClick={() => onChangeText('Mexicana')}><b>Mexicana</b></Typography>
-            </DivCategories>
+            </DivCategories> : <div></div>}
 
             <DivCentralizando>
                 {renderRestaurant()}
