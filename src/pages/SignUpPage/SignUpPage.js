@@ -9,7 +9,7 @@ const SignUpPage = () => {
     
     return (
         <MainContainer>
-            <img src={logo}/>
+            <img src={logo} alt={'logotipo'}/>
             <p><b>Cadastrar</b></p>
             <SignUpForm/>
         </MainContainer>

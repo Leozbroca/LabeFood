@@ -3,14 +3,12 @@ import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const HomePage = () => {
+    useProtectedPage()
     const navigate = useNavigate()
     const {restaurants} = useContext(GlobalStateContext)
-
-    const goToRestDetails = (id) => {
-        goToRestaurant(navigate,id)
-    }
 
    const listaRestaurantes = restaurants.map((restaurante) => {
        return (
@@ -20,7 +18,7 @@ const HomePage = () => {
             <EsperaEFrete>
                 <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
                 <div>Frete R${restaurante.shipping},00</div>
-                <button onClick={() => {goToRestDetails(restaurante.id)}}>TESTE</button>
+                <button onClick={() => {goToRestaurant(navigate, restaurante.id)}}>TESTE</button>
             </EsperaEFrete>
             
         </DivTest> 
