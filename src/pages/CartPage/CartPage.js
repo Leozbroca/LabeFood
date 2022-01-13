@@ -4,10 +4,13 @@ import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { ContainerCard, DivButton, DivImg, DivText, DivQuant, ContainerCart } from "./styles";
 import { Typography } from "@material-ui/core";
 import LabelBottomNavigation from '../../components/Footer/Footer'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = () => {
     useProtectedPage()
     const {cart, setCart, setColors, count, setCount} = useContext(GlobalStateContext)
+    const notify = () => toast.success("removido");
     
      useEffect(() => {
         setColors.setColorHome('')

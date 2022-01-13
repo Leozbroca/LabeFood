@@ -2,26 +2,18 @@ import { Typography } from "@material-ui/core";
 import React, { useContext} from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { ContainerCard, DivButton, DivImg, DivText, DivQuant} from "./styles";
-import { useState } from "react";
-import Select from './Select'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const CardProduct = (props) => {
 
-    const { cart, setCart, count, setCount } = useContext(GlobalStateContext)
-   
-    // const [select , setSelect] = useState(false)
+    const { cart, setCart } = useContext(GlobalStateContext)
+    const notify = () => toast.success("Adicionado");
 
-    // const showSelect = () =>{
-    //     setSelect(!select) 
-    // }
+
     
-    // const returnShowSelect = () =>{
-    //     const returnSelect = <div>
-    //     <Select/>
-    // </div>
-    // return select ? returnSelect : ''
-    // }
-
 
     const addToCart = (prod) => {
         const index = cart.findIndex((i) => i.id === prod.id)
@@ -33,6 +25,7 @@ const CardProduct = (props) => {
             newCart[index].amount += 1
         } 
         setCart(newCart)
+        notify()
         
     }
   
@@ -52,11 +45,11 @@ const CardProduct = (props) => {
                 <Typography variant={'body1'}>R$ {props.product.price}</Typography>
                 {/* {returnShowSelect()} */}
             </DivText>
+            <ToastContainer position='top-right' autoClose={2000} />
             <DivButton>
                 {/* <button onClick={showSelect}>Adicionar</button> */}
                 <button onClick={() => addToCart(props.product) }>Adicionar</button>
             </DivButton>
-           
         </ContainerCard>
 
     )
