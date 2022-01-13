@@ -2,12 +2,14 @@ import React from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import EditSignUpForm from "./EditSignUpForm";
 import { MainContainer } from "./styles";
+import Header from '../../components/Header/Header'
+import { goToProfile } from "../../router/coordinator";
 
 const EditSignUpPage = () => {
     useProtectedPage()
     return (
         <MainContainer>
-            <h1>Editar Perfil</h1>
+            <Header title={'Editar'} goTo={goToProfile}/>
             <EditSignUpForm/>
         </MainContainer>
     )

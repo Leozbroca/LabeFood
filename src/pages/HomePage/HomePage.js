@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput } from "./styles";
+import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput, DivForm } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
 // import useProtectedPage from "../../hooks/useProtectedPage";
 import { TextField, Typography, InputAdornment } from '@material-ui/core';
@@ -143,8 +143,8 @@ const HomePage = () => {
 
     return (
         <MainContainer>
-            <Header/>
-            <form>
+            <Header title={'Future Eats'}/>
+            <DivForm>
             <StyledInput
                 name='restaurante'
                 value={form.restaurante}
@@ -157,7 +157,7 @@ const HomePage = () => {
                     startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
                   }}
                 />
-            </form> 
+            </DivForm> 
             {form.restaurante === '' ? <DivCategories>
                 <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
                 <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>

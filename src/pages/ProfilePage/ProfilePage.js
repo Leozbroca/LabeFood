@@ -3,7 +3,6 @@ import { getProfile } from "../../services/user";
 import { useContext, useEffect } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import LabelBottomNavigation from '../../components/Footer/Footer'
-// import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from "../../hooks/useRequestData";
 import BASE_URL from "../../constants/url";
 import useProtectedPage from "../../hooks/useProtectedPage";
@@ -12,6 +11,7 @@ import { Edit } from "@material-ui/icons";
 import { ContainerAddress, ContainerProfile, DivIcon, DivIconAdd, DivText, DivTextAdd, ScreenContainer } from "./styles";
 import { useNavigate } from "react-router";
 import { goToEditAddress, goToEditSignUp } from "../../router/coordinator";
+import Header from '../../components/Header/Header'
 
 const ProfilePage = () => {
     useProtectedPage()
@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
     return (
         <ScreenContainer>
-            <h1>Perfil</h1>
+            <Header title={'Meu perfil'}/>
             <ContainerProfile>
                 <DivText>
                     <Typography variant={'body1'} color={'primary'}>
