@@ -78,3 +78,7 @@ export const DivQuant = styled.div`
         height: 33px;
     }
 `
+
+export const RenderCart = styled.div`
+margin-bottom: 70px;
+`

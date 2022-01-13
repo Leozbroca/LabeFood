@@ -5,7 +5,8 @@ import BASE_URL from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
 import { ContainerRestaurant, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
 import CardProduct from "../../components/CardProduct/CardProduct";
-import { goToCart } from "../../router/coordinator";
+import { goToCart , goToHome} from "../../router/coordinator";
+import Header from '../../components/Header/Header'
 
 const RestaurantPage = () => {
     useProtectedPage()
@@ -46,7 +47,8 @@ const RestaurantPage = () => {
 
     return (
         <ContainerRestaurant>
-            <DivTest>
+            <Header title={'Restaurante'} goTo={goToHome}/>
+                <DivTest>
                 <DivImagem src={details && details.logoUrl} />
                 <DivNome>{details && details.name}</DivNome>
                 <EsperaEFrete>

@@ -79,3 +79,7 @@ export const StyledInput = styled(TextField)`
   max-width: 328px;
   height: 56px;
 `
+
+export const DivForm = styled.form`
+margin-top:20px;
+`
