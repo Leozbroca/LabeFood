@@ -22,6 +22,8 @@ const RestaurantPage = () => {
         return categories.indexOf(cate) === index;
     })
 
+    
+
     const renderProducts = () => {
         const categoriesRender = 
         filterCategories && 

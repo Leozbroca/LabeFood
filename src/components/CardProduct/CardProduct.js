@@ -1,11 +1,27 @@
 import { Typography } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { ContainerCard, DivButton, DivImg, DivText } from "./styles";
+import { ContainerCard, DivButton, DivImg, DivText, DivQuant} from "./styles";
+import { useState } from "react";
+import Select from './Select'
 
 const CardProduct = (props) => {
 
-    const { cart, setCart } = useContext(GlobalStateContext)
+    const { cart, setCart, count, setCount } = useContext(GlobalStateContext)
+   
+    // const [select , setSelect] = useState(false)
+
+    // const showSelect = () =>{
+    //     setSelect(!select) 
+    // }
+    
+    // const returnShowSelect = () =>{
+    //     const returnSelect = <div>
+    //     <Select/>
+    // </div>
+    // return select ? returnSelect : ''
+    // }
+
 
     const addToCart = (prod) => {
         const index = cart.findIndex((i) => i.id === prod.id)
@@ -15,9 +31,15 @@ const CardProduct = (props) => {
             newCart.push(cartItem)
         } else {
             newCart[index].amount += 1
-        }
+        } 
         setCart(newCart)
+        
     }
+  
+  
+
+
+    
     
     return (
         <ContainerCard>
@@ -28,10 +50,13 @@ const CardProduct = (props) => {
                 <Typography variant={'body1'} color='secondary'>{props.product.name}</Typography>
                 <Typography variant={'subtitle2'} color='error'>{props.product.description}</Typography>
                 <Typography variant={'body1'}>R$ {props.product.price}</Typography>
+                {/* {returnShowSelect()} */}
             </DivText>
             <DivButton>
-                <button onClick={() => addToCart(props.product)}>Adicionar</button>
+                {/* <button onClick={showSelect}>Adicionar</button> */}
+                <button onClick={() => addToCart(props.product) }>Adicionar</button>
             </DivButton>
+           
         </ContainerCard>
 
     )
