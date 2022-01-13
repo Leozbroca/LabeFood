@@ -1,30 +1,26 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import BASE_URL from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
 import { ContainerRestaurant, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
 import CardProduct from "../../components/CardProduct/CardProduct";
-
-
+import { goToCart } from "../../router/coordinator";
 
 const RestaurantPage = () => {
     useProtectedPage()
     const params = useParams()
+    const navigate = useNavigate()
     const restaurantDetails = useRequestData([], `${BASE_URL}/restaurants/${params.restId}`)
     const details = restaurantDetails.restaurant
-    console.log(details)
 
     const categories = details && details.products.map((product) => {
             return product.category
         })
-    console.log('aa', categories)
 
     const filterCategories = categories && categories.filter((cate, index) => {
         return categories.indexOf(cate) === index;
     })
-    console.log('categorias filtradas', filterCategories)
-
 
     const renderProducts = () => {
         const categoriesRender = 
@@ -45,10 +41,8 @@ const RestaurantPage = () => {
                 </div>
             )
         })
-
         return categoriesRender
     }
-
 
     return (
         <ContainerRestaurant>
@@ -66,6 +60,7 @@ const RestaurantPage = () => {
                     <div>{details && details.address}</div>
                 </EsperaEFrete>
             </DivTest>
+            <button onClick={() => goToCart(navigate)}>carrinho</button>
             {renderProducts()}
         </ContainerRestaurant>
     )
