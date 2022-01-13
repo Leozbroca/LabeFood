@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button, TextField } from '@material-ui/core';
 
 export const ContainerCart = styled.div`
 display: flex;
@@ -81,4 +82,94 @@ export const DivQuant = styled.div`
 
 export const RenderCart = styled.div`
 margin-bottom: 70px;
+`
+
+export const DivTextAdress = styled.div`
+    background-color: #eee;
+    width: 100vw;
+    max-width: 328px;
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div{
+    }
+    p{
+        /* margin-left: 16px; */
+        margin: 3px;
+        margin-left: 16px;
+    }
+`
+
+export const DivSubTotal = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 328px;
+`
+
+export const DivPayment = styled.div`
+    width: 328px;
+    margin-bottom: 50px;
+    div{
+        margin-bottom: 5px;
+    }
+    label{
+        margin-left: 8px;
+    }
+`
+
+export const DivButtonStyled = styled.div`
+    padding-bottom: 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+`
+
+export const StyledButton = styled(Button)`
+  width: 328px;
+  height: 42px;
+  padding: 12px 16px;
+  border-radius: 2px;
+`
+
+export const DivTest = styled.div`
+display:flex;
+flex-direction: column;
+justify-content: center;
+/* align-items: center; */
+width: 90%;
+max-width: 328px;
+height: 240px;
+margin-bottom:10px;
+margin-top: 10px;
+`
+
+export const DivImagem = styled.img`
+width: 328px;
+height: 120px;
+border-top-left-radius:8px;
+border-top-right-radius:8px;
+object-fit: auto;
+`
+
+export const DivCentralizando = styled.div`
+display:flex;
+flex-direction: column;
+align-items:center;
+justify-content: center;
+`
+
+export const DivNome = styled.div`
+color:#5cb646;
+margin:12px 16px 4px 16px;
+font-size:16px;
+`
+
+export const EsperaEFrete = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+margin:0px 16px 0px 16px;
+color: #b8b8b8;
 `

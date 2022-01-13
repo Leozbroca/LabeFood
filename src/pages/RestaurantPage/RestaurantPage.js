@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate, useParams } from "react-router";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import BASE_URL from "../../constants/url";
@@ -7,13 +7,37 @@ import { ContainerRestaurant, DivImagem, DivNome, DivTest, EsperaEFrete } from "
 import CardProduct from "../../components/CardProduct/CardProduct";
 import { goToCart , goToHome} from "../../router/coordinator";
 import Header from '../../components/Header/Header'
+import CartPage from "../CartPage/CartPage";
+import { useContext } from "react";
+import GlobalStateContext from "../../globalContext/GlobalStateContext";
+import axios from "axios";
 
 const RestaurantPage = () => {
     useProtectedPage()
+    const {setRestaurantDetail} = useContext(GlobalStateContext)
     const params = useParams()
     const navigate = useNavigate()
     const restaurantDetails = useRequestData([], `${BASE_URL}/restaurants/${params.restId}`)
     const details = restaurantDetails.restaurant
+
+
+    const getRestaurantDetails = () => {
+        axios.get(`${BASE_URL}/restaurants/${params.restId}` , {
+            headers: {
+              auth: localStorage.getItem('token')
+            }
+          })
+            .then((response) => {
+              setRestaurantDetail(response.data.restaurant)
+            })
+            .catch((error) => {
+              alert('Ocorreu um erro, tente novamente')
+            })
+    }
+
+    useEffect(() => {
+            getRestaurantDetails()
+    }, [])
 
     const categories = details && details.products.map((product) => {
             return product.category
@@ -22,8 +46,6 @@ const RestaurantPage = () => {
     const filterCategories = categories && categories.filter((cate, index) => {
         return categories.indexOf(cate) === index;
     })
-
-    
 
     const renderProducts = () => {
         const categoriesRender = 
@@ -50,7 +72,7 @@ const RestaurantPage = () => {
     return (
         <ContainerRestaurant>
             <Header title={'Restaurante'} goTo={goToHome}/>
-                <DivTest>
+            <DivTest>
                 <DivImagem src={details && details.logoUrl} />
                 <DivNome>{details && details.name}</DivNome>
                 <EsperaEFrete>

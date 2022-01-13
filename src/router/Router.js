@@ -34,7 +34,7 @@ const Router = () => {
 
                 <Route path='/profile' element={<ProfilePage />} />
 
-                <Route path='/cart' element={<CartPage />} />
+                <Route path='/cart/' element={<CartPage />} />
 
                 <Route path='*' element={<ErrorPage />} />
 

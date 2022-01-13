@@ -10,6 +10,7 @@ export const GlobalState = (props) => {
     const [colorCart, setColorCart] = useState('');
     const [colorProfile, setColorProfile] = useState('');
     const [count, setCount] = useState(0)
+    const [restaurantDetail, setRestaurantDetail] = useState({})
     
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -34,7 +35,7 @@ export const GlobalState = (props) => {
     const setColors = {setColorHome, setColorCart, setColorProfile}
 
     return(
-     <GlobalStateContext.Provider value={{restaurants, cart, setCart, colors, setColors, count, setCount}}>
+     <GlobalStateContext.Provider value={{restaurants, cart, setCart, colors, setColors, count, setCount, restaurantDetail, setRestaurantDetail}}>
         {props.children}
     </GlobalStateContext.Provider>
     )

@@ -20,9 +20,6 @@ export const DivButton = styled.div`
   /* border: 1px solid black; */
   position: absolute;
   margin-left: 239px;
-  
-  
-
 button{
   width: 90px;
   height: 31px;
@@ -32,7 +29,6 @@ button{
   border: solid 1px ${secondaryColor};
   background-color: white;
   color: ${secondaryColor};
-  
 }
     
 `
@@ -94,3 +90,4 @@ export const DivQuant = styled.div`
         height: 33px;
     }
 `
+
