@@ -4,13 +4,11 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from './constants/theme';
 import { GlobalState } from './globalContext/GlobalState';
 
-
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalState>
-      <Router/>
+        <Router/>
       </GlobalState>
     </ThemeProvider>
   );
