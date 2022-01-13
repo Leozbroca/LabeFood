@@ -1,25 +1,47 @@
-import React from "react";
-import { useContext, useEffect } from "react";
-import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import LabelBottomNavigation from '../../components/Footer/Footer'
+import React, {useContext, useEffect} from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import GlobalStateContext from "../../globalContext/GlobalStateContext";
+import { ContainerCard, DivButton, DivImg, DivText, DivQuant, ContainerCart } from "./styles";
+import { Typography } from "@material-ui/core";
+import LabelBottomNavigation from '../../components/Footer/Footer'
 
 const CartPage = () => {
-  useProtectedPage()
-    const {setColors} = useContext(GlobalStateContext)
-
-    useEffect(() => {
+    useProtectedPage()
+    const {cart, setCart, setColors} = useContext(GlobalStateContext)
+    
+     useEffect(() => {
         setColors.setColorHome('')
         setColors.setColorCart('#5cb646')
         setColors.setColorProfile('')
-    }, [])
+     }, [])
 
+    const renderCart = cart && cart.map((product) => {
+        return (
+            <ContainerCard>
+            <DivImg>
+                <img src={product.photoUrl} alt={'foto do produto'} />
+            </DivImg>
+            <DivText>
+                <Typography variant={'body1'} color='secondary'>{product.name}</Typography>
+                <Typography variant={'subtitle2'} color='error'>{product.description}</Typography>
+                <Typography variant={'body1'}>R$ {product.price}</Typography>
+            </DivText>
+            <DivQuant>
+                <p>{product.amount}</p>
+            </DivQuant>
+            <DivButton>
+                <button >Remover</button>
+            </DivButton>
+        </ContainerCard>
+        )
+    })
     return (
-        <div>
-            <h1>CartPage</h1>
-            <LabelBottomNavigation/>
-        </div>
-    )
+        <ContainerCart>
+            <h4>Meu carrinho</h4>
+            {renderCart}
+        <LabelBottomNavigation/>
+        </ContainerCart>
+      )
 }
 
 export default CartPage;

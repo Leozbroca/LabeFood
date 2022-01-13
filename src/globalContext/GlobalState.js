@@ -5,6 +5,7 @@ import BASE_URL from "../constants/url";
 
 export const GlobalState = (props) => {
     const [restaurants,setRestaurants] = useState([])
+    const [cart, setCart] = useState([])
     const [colorHome, setColorHome] = useState('');
     const [colorCart, setColorCart] = useState('');
     const [colorProfile, setColorProfile] = useState('');
@@ -32,7 +33,7 @@ export const GlobalState = (props) => {
     const setColors = {setColorHome, setColorCart, setColorProfile}
 
     return(
-     <GlobalStateContext.Provider value={{restaurants, colors, setColors }}>
+     <GlobalStateContext.Provider value={{restaurants, cart, setCart, colors, setColors}}>
         {props.children}
     </GlobalStateContext.Provider>
     )
