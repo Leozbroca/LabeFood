@@ -1,5 +1,5 @@
 import BASE_URL from "../constants/url"
-import { goToAdress, goToHome } from "../router/coordinator"
+import { goToAdress, goToHome, goToProfile } from "../router/coordinator"
 import axios from "axios"
 
 export const login = (body, clear, navigate) => {
@@ -51,17 +51,41 @@ axios
 
 }
 
-// export const getProfile = (token) => {
-//     axios
-//     .get(`${BASE_URL}/profile`, {
-//         header: {
-//             auth: token
-//         }
-//     })
-//     .then ( res => {
-//         console.log(res.data)
-//     })
-//     .catch ( err => {
-//         console.log(err.response.data.message)
-//     })
-// }
+export const editAddress = (body, clear, token, navigate) => {
+    axios
+        .put(`${BASE_URL}/address`, body, {
+            headers: {
+                auth: token
+          }
+        })
+        .then((res) => {
+            localStorage.setItem('token', res.data.token)
+            clear()
+            console.log('cadastro', res)
+            goToProfile(navigate)
+        })
+        .catch((err) => {
+            console.log('errAdress', err.response.data.message)
+        })
+    
+}
+
+export const updateProfile = (body, clear, token, navigate) => {
+    axios
+        .put(`${BASE_URL}/profile`, body, {
+            headers: {
+                auth: token
+          }
+        })
+        .then((res) => {
+            clear()
+            console.log('cadastro', res)
+            goToProfile(navigate)
+        })
+        .catch((err) => {
+            console.log('errAdress', err.response.data.message)
+        })
+    
+}
+
+

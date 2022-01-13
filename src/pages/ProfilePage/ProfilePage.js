@@ -4,15 +4,24 @@ import { useContext, useEffect } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import LabelBottomNavigation from '../../components/Footer/Footer'
 // import useProtectedPage from "../../hooks/useProtectedPage";
+import useRequestData from "../../hooks/useRequestData";
+import BASE_URL from "../../constants/url";
+import useProtectedPage from "../../hooks/useProtectedPage";
+import { Typography } from "@material-ui/core";
+import { Edit } from "@material-ui/icons";
+import { ContainerAddress, ContainerProfile, DivIcon, DivIconAdd, DivText, DivTextAdd, ScreenContainer } from "./styles";
+import { useNavigate } from "react-router";
+import { goToEditAddress, goToEditSignUp } from "../../router/coordinator";
 
 const ProfilePage = () => {
-  //     useProtectedPage()
-    const {setColors} = useContext(GlobalStateContext)
-    const token = localStorage.getItem('token')
+    useProtectedPage()
+    const { setColors } = useContext(GlobalStateContext)
+    const getProfile = useRequestData([], `${BASE_URL}/profile`)
+    const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
+    const profile = getProfile.user
+    const address = getAddress.address
 
-//     // const userProfile = () => {
-//     //     const profile = getProfile(token)  
-//     // }
+    const navigate = useNavigate()
 
     useEffect(() => {
         setColors.setColorHome('')
@@ -21,12 +30,54 @@ const ProfilePage = () => {
     }, [])
 
     return (
-        <div>
-            <h1>ProfilePage</h1>
-            <LabelBottomNavigation/>
-        </div>
+        <ScreenContainer>
+            <h1>Perfil</h1>
+            <ContainerProfile>
+                <DivText>
+                    <Typography variant={'body1'} color={'primary'}>
+                        {profile && profile.name}
+                    </Typography>
+
+                    <Typography variant={'body1'} color={'primary'}>
+                        {profile && profile.email}
+                    </Typography>
+
+                    <Typography variant={'body1'} color={'primary'}>
+                        {profile && profile.cpf}
+                    </Typography>
+                </DivText>
+
+                <DivIcon>
+                    <Edit onClick={() => goToEditSignUp(navigate)} />
+                </DivIcon>
+            </ContainerProfile>
+            <ContainerAddress>
+                <DivTextAdd>
+                <Typography variant='body1' color="error">
+                Endereço Cadastrado
+                </Typography>
+
+                <Typography variant='body1' color="primary">
+                    {`${address && address.street}, 
+                    ${address && address.number} - 
+                    ${address && address.neighbourhood}`}
+                </Typography>
+                </DivTextAdd>
+
+                <DivIconAdd>
+                    <Edit onClick={() => goToEditAddress(navigate)}/>
+                </DivIconAdd>
+            </ContainerAddress>
+
+            
+            <Typography variant='h6' color="primary">
+                Histórico de Pedidos
+            </Typography>
+
+            <LabelBottomNavigation />
+        </ScreenContainer>
     )
 }
 
 
-// export default ProfilePage;
+export default ProfilePage;
