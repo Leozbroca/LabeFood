@@ -1,5 +1,6 @@
 import React from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import EditAdressForm from "./EditAddressForm";
 
 
 const EditAdressPage = () => {
@@ -7,6 +8,7 @@ const EditAdressPage = () => {
     return (
         <div>
             <h1>EditAdressPage</h1>
+            <EditAdressForm/>
         </div>
     )
 }

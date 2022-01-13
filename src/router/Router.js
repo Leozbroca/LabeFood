@@ -28,7 +28,7 @@ const Router = () => {
 
                 <Route path='/adress' element={<AdressPage />} />
 
-                <Route path='/editadress' element={<EditAdressPage />} />
+                <Route path='/editaddress' element={<EditAdressPage />} />
 
                 <Route path='/restaurants/:restId' element={<RestaurantPage />} />
 
