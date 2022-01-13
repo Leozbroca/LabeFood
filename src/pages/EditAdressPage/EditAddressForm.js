@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from "react-router"
 import useForm from "../../hooks/useForm"
-import { addAdress } from "../../services/user"
+import { addAdress, editAddress } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const EditAdressForm = () => {
@@ -17,8 +17,11 @@ const EditAdressForm = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
+
+
     const onSubmitForm = (event) => {
         event.preventDefault()
+        editAddress(form, clear, token, navigate)
     }
 
 

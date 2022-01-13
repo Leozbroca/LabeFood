@@ -1,15 +1,16 @@
 import React from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import EditAdressForm from "./EditAddressForm";
+import { MainContainer } from "./styles";
 
 
 const EditAdressPage = () => {
     useProtectedPage()
     return (
-        <div>
+        <MainContainer>
             <h1>EditAdressPage</h1>
             <EditAdressForm/>
-        </div>
+        </MainContainer>
     )
 }
 

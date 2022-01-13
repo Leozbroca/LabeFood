@@ -22,13 +22,13 @@ export const StyledInput = styled(TextField)`
 
 // Estilização da página
 
-// export const MainContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: 10vh;
-// `
+export const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+`
 
 export const DivForm = styled.div`
   form{
