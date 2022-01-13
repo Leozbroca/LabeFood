@@ -3,13 +3,16 @@ import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
+// import useProtectedPage from "../../hooks/useProtectedPage";
 import { TextField, Typography, InputAdornment } from '@material-ui/core';
 import useForm from "../../hooks/useForm"
 import SearchIcon from '@material-ui/icons/Search';
 import Header from '../../components/Header/Header'
 import LabelBottomNavigation from '../../components/Footer/Footer'
 
+
 const HomePage = () => {
+//     useProtectedPage()
     const navigate = useNavigate()
     const { restaurants, setColors } = useContext(GlobalStateContext)
     const { form, onChangeInput, clear } = useForm({ restaurante: '' })
@@ -21,6 +24,7 @@ const HomePage = () => {
         setColors.setColorCart('')
         setColors.setColorProfile('')
     }, [])
+
 
     const goToRestDetails = (id) => {
         goToRestaurant(navigate, id)
@@ -135,6 +139,7 @@ const HomePage = () => {
             return listaRestaurantes
         }
     }
+
 
     return (
         <MainContainer>

@@ -3,14 +3,16 @@ import { getProfile } from "../../services/user";
 import { useContext, useEffect } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import LabelBottomNavigation from '../../components/Footer/Footer'
+// import useProtectedPage from "../../hooks/useProtectedPage";
 
 const ProfilePage = () => {
+  //     useProtectedPage()
     const {setColors} = useContext(GlobalStateContext)
     const token = localStorage.getItem('token')
 
-    // const userProfile = () => {
-    //     const profile = getProfile(token)  
-    // }
+//     // const userProfile = () => {
+//     //     const profile = getProfile(token)  
+//     // }
 
     useEffect(() => {
         setColors.setColorHome('')
@@ -26,4 +28,5 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage;
+
+// export default ProfilePage;

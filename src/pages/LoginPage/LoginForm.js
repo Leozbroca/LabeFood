@@ -3,8 +3,10 @@ import useForm from "../../hooks/useForm"
 import { useNavigate } from "react-router"
 import { login } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
+import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
 const LoginForm = () => {
+    useUnprotectedPage()
     const { form, onChangeInput, clear } = useForm({ email: '', password: '' })
     const navigate = useNavigate()
 

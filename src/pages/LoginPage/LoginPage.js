@@ -12,7 +12,7 @@ const LoginPage = () => {
     
     return (
         <MainContainer>
-            <img src={logo}/>
+            <img src={logo} alt={'logotipo'}/>
             <p><b>Entrar</b></p>
             <LoginForm />
             <div onClick={() => goToSignUp(navigate)}>

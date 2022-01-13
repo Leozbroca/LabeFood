@@ -2,8 +2,10 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import LabelBottomNavigation from '../../components/Footer/Footer'
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const CartPage = () => {
+  useProtectedPage()
     const {setColors} = useContext(GlobalStateContext)
 
     useEffect(() => {
