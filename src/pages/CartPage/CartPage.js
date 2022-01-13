@@ -1,12 +1,19 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { ContainerCard, DivButton, DivImg, DivText, DivQuant, ContainerCart } from "./styles";
 import { Typography } from "@material-ui/core";
+import LabelBottomNavigation from '../../components/Footer/Footer'
 
 const CartPage = () => {
     useProtectedPage()
-    const {cart, setCart} = useContext(GlobalStateContext)
+    const {cart, setCart, setColors} = useContext(GlobalStateContext)
+    
+     useEffect(() => {
+        setColors.setColorHome('')
+        setColors.setColorCart('#5cb646')
+        setColors.setColorProfile('')
+     }, [])
 
     const renderCart = cart && cart.map((product) => {
         return (
@@ -32,8 +39,9 @@ const CartPage = () => {
         <ContainerCart>
             <h4>Meu carrinho</h4>
             {renderCart}
+        <LabelBottomNavigation/>
         </ContainerCart>
-    )
+      )
 }
 
 export default CartPage;

@@ -6,6 +6,9 @@ import BASE_URL from "../constants/url";
 export const GlobalState = (props) => {
     const [restaurants,setRestaurants] = useState([])
     const [cart, setCart] = useState([])
+    const [colorHome, setColorHome] = useState('');
+    const [colorCart, setColorCart] = useState('');
+    const [colorProfile, setColorProfile] = useState('');
     
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -26,10 +29,11 @@ export const GlobalState = (props) => {
         getRestaurants()
     }, [])
     
-    
+    const colors = {colorHome, colorCart, colorProfile}
+    const setColors = {setColorHome, setColorCart, setColorProfile}
 
     return(
-     <GlobalStateContext.Provider value={{restaurants, cart, setCart}}>
+     <GlobalStateContext.Provider value={{restaurants, cart, setCart, colors, setColors}}>
         {props.children}
     </GlobalStateContext.Provider>
     )

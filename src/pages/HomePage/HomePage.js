@@ -1,21 +1,29 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
-import useProtectedPage from "../../hooks/useProtectedPage";
+// import useProtectedPage from "../../hooks/useProtectedPage";
 import { TextField, Typography, InputAdornment } from '@material-ui/core';
 import useForm from "../../hooks/useForm"
 import SearchIcon from '@material-ui/icons/Search';
+import Header from '../../components/Header/Header'
+import LabelBottomNavigation from '../../components/Footer/Footer'
 
 
 const HomePage = () => {
-    useProtectedPage()
+//     useProtectedPage()
     const navigate = useNavigate()
-    const { restaurants } = useContext(GlobalStateContext)
+    const { restaurants, setColors } = useContext(GlobalStateContext)
     const { form, onChangeInput, clear } = useForm({ restaurante: '' })
     const [ text, setText ] = useState('')
     const [ control, setControl ] = useState(0)
+
+    useEffect(() => {
+        setColors.setColorHome('#5cb646')
+        setColors.setColorCart('')
+        setColors.setColorProfile('')
+    }, [])
 
 
     const goToRestDetails = (id) => {
@@ -135,7 +143,7 @@ const HomePage = () => {
 
     return (
         <MainContainer>
-            <h4><b>Future Eats</b></h4>
+            <Header/>
             <form>
             <StyledInput
                 name='restaurante'
@@ -165,6 +173,7 @@ const HomePage = () => {
             <DivCentralizando>
                 {renderRestaurant()}
             </DivCentralizando>
+            <LabelBottomNavigation/>
         </MainContainer>
     )
 }

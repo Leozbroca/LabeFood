@@ -57,6 +57,7 @@ export const DivCentralizando = styled.div`
     flex-direction: column;
     align-items:center;
     justify-content: center;
+    margin-bottom:60px;
 `
 
 export const DivNome = styled.div`
