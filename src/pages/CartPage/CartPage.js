@@ -1,11 +1,15 @@
 import React, {useContext, useEffect} from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { ContainerCard, DivButton, DivImg, DivText, DivQuant, ContainerCart } from "./styles";
+import { ContainerCard, DivButton, DivImg, DivText, DivQuant, ContainerCart, RenderCart } from "./styles";
 import { Typography } from "@material-ui/core";
 import LabelBottomNavigation from '../../components/Footer/Footer'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import Header from '../../components/Header/Header'
+
 
 const CartPage = () => {
     useProtectedPage()
@@ -60,10 +64,13 @@ const CartPage = () => {
         </ContainerCard>
         )
     })
+
     return (
         <ContainerCart>
-            <h4>Meu carrinho</h4>
-            {renderCart}
+            <Header title={'Meu carrinho'} />
+            <RenderCart>
+                {renderCart}
+            </RenderCart>
         <LabelBottomNavigation/>
         </ContainerCart>
       )

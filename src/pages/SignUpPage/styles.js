@@ -31,7 +31,6 @@ export const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 2vh;
   img{
     width: 104px;
     height: 58px;

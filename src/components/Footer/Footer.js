@@ -13,6 +13,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import {goToProfile, goToHome, goToCart} from '../../router/coordinator'
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 const useStyles = makeStyles({
   root: props => ({
@@ -46,9 +49,9 @@ export default function LabelBottomNavigation() {
 
   return (
     <BottomNavigation value={value} className={classes.root}>
-      <BottomNavigationAction className={classes.home} onClick={() => goToHome(navigate)} value="home" icon={<HomeIcon fontSize='large'/>} />
-      <BottomNavigationAction className={classes.cart} onClick={() => goToCart(navigate)} value="cart" icon={<ShoppingCartIcon fontSize='large'/>} />
-      <BottomNavigationAction className={classes.profile} onClick={() => goToProfile(navigate)} value="profile" icon={<PersonIcon fontSize='large'/>} />
+      <BottomNavigationAction className={classes.home} onClick={() => goToHome(navigate)} value="home" icon={<HomeOutlinedIcon fontSize='large'/>} />
+      <BottomNavigationAction className={classes.cart} onClick={() => goToCart(navigate)} value="cart" icon={<ShoppingCartOutlinedIcon fontSize='large'/>} />
+      <BottomNavigationAction className={classes.profile} onClick={() => goToProfile(navigate)} value="profile" icon={<PersonOutlineOutlinedIcon fontSize='large'/>} />
     </BottomNavigation>
   );
 }

@@ -24,6 +24,7 @@ justify-content: center;
 export const DivIcon = styled.div`
 display: flex;
 justify-content: flex-start;
+padding-top:20px;
 `
 
 //Address
