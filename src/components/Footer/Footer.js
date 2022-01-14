@@ -24,6 +24,7 @@ const useStyles = makeStyles({
     position:'fixed',
     boxShadow:'5px 5px 15px gray',
     bottom:0, 
+    zIndex: 1,
     '& button': {
       // color: `#5cb646`,
       paddingBottom:'15px',

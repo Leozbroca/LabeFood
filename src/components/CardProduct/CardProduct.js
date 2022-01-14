@@ -8,12 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const CardProduct = (props) => {
-
-    const { cart, setCart } = useContext(GlobalStateContext)
-    const notify = () => toast.success("Adicionado");
-
-
     
+    const notify = () => toast.success("Adicionado");
+    const { cart, setCart } = useContext(GlobalStateContext)
 
     const addToCart = (prod) => {
         const index = cart.findIndex((i) => i.id === prod.id)
@@ -26,16 +23,11 @@ const CardProduct = (props) => {
         } 
         setCart(newCart)
         notify()
-        
     }
-  
-  
-
-
-    
     
     return (
         <ContainerCard>
+            <ToastContainer position='top-center' autoClose={2000} />
             <DivImg>
                 <img src={props.product.photoUrl} alt={'foto do produto'} />
             </DivImg>
@@ -45,9 +37,8 @@ const CardProduct = (props) => {
                 <Typography variant={'body1'}>R$ {props.product.price}</Typography>
                 {/* {returnShowSelect()} */}
             </DivText>
-            <ToastContainer position='top-right' autoClose={2000} />
+            
             <DivButton>
-                {/* <button onClick={showSelect}>Adicionar</button> */}
                 <button onClick={() => addToCart(props.product) }>Adicionar</button>
             </DivButton>
         </ContainerCard>

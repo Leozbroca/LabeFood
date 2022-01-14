@@ -9,7 +9,7 @@ align-items: center;
 export const DivTest = styled.div`
 display:flex;
 flex-direction: column;
-width: 90%;
+width: 328px;
 height: 240px;
 margin-bottom:10px;
 margin-top: 10px;

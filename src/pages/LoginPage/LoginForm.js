@@ -14,8 +14,7 @@ const LoginForm = () => {
         event.preventDefault()
         login(form, clear, navigate)
     }
-
-
+    
     return(
         <DivForm>
             <form onSubmit={onSubmitForm}>
