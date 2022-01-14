@@ -14,6 +14,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
+import Swal from 'sweetalert2'
+
 import {
   ContainerCard,
   DivButton,
@@ -41,11 +43,12 @@ const CartPage = () => {
   const [value, setValue] = useState('');
 
   const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
+  const getActiveOrder = useRequestData({}, `${BASE_URL}/active-order`)
   const address = getAddress.address
   const details = restaurantDetail
-  
+
   const notify = () => toast.error("removido");
-  
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -92,18 +95,46 @@ const CartPage = () => {
       products: productPay,
       paymentMethod: value
     }
-    console.log('produ', productPay)
-    axios.post(`${BASE_URL}/restaurants/${id}/order`, body,  {
-      headers: {
-        auth: localStorage.getItem('token')
-      }
-    })
-    .then((res) => {
-      console.log('deu certo', res.data)
-    })
-    .catch((err) => {
-      console.log('deu erro', err.response)
-    })
+    if (getActiveOrder.order === null) {
+      axios.post(`${BASE_URL}/restaurants/${id}/order`, body, {
+        headers: {
+          auth: localStorage.getItem('token')
+        }
+      })
+        .then((res) => {
+          console.log('deu certo', res.data)
+          let timerInterval
+          Swal.fire({
+            title: 'Auto close alert!',
+            html: 'I will close in <b></b> milliseconds.',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
+        })
+        .catch((err) => {
+          console.log('deu erro', err.response)
+        })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Já tem um pedido em andamento',
+      })
+    }
   }
 
   const renderCart = cart && cart.map((product) => {
@@ -130,7 +161,7 @@ const CartPage = () => {
   return (
     <ContainerCart>
 
-      <ToastContainer position='top-center' autoClose={2000} />
+      <ToastContainer position='top-center' autoClose={500} />
 
       <Header title={'Meu carrinho'} />
 
@@ -170,7 +201,6 @@ const CartPage = () => {
         <p>Forma de pagamento</p>
         <hr />
         <FormControl component="fieldset">
-          {/* <FormLabel component="legend"></FormLabel> */}
           <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
             <FormControlLabel value="money" control={<Radio />} label="Dinheiro" />
             <FormControlLabel value="creditcard" control={<Radio />} label="Cartão de Crédito" />
@@ -179,11 +209,22 @@ const CartPage = () => {
       </DivPayment>
 
       <DivButtonStyled>
-        <StyledButton
-          color={renderCart == false ? 'tertiary' : 'secondary'}
-          variant="contained"
-          type="submit"
-          onClick={() => confirmPayment(details.id)}><b>Confirmar</b></StyledButton>
+
+        {renderCart == false ?
+          <StyledButton
+            color='tertiary'
+            variant="contained"
+            type="submit"
+          ><b>Confirmar</b>
+          </StyledButton>
+          :
+          <StyledButton
+            color='secondary'
+            variant="contained"
+            type="submit"
+            onClick={() => confirmPayment(details.id)}><b>Confirmar</b>
+          </StyledButton>}
+
       </DivButtonStyled>
 
       <LabelBottomNavigation />

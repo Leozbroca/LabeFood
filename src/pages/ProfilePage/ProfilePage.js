@@ -29,6 +29,10 @@ const ProfilePage = () => {
         setColors.setColorProfile('#5cb646')
     }, [])
 
+    // const getActiveOrder = useRequestData({}, `${BASE_URL}/active-order`)
+
+    // console.log(getActiveOrder)
+
     return (
         <ScreenContainer>
             <Header title={'Meu perfil'}/>

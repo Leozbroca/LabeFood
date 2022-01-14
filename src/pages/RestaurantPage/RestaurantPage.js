@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import BASE_URL from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
 import { ContainerRestaurant, DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles";
 import CardProduct from "../../components/CardProduct/CardProduct";
-import { goToCart , goToHome} from "../../router/coordinator";
+import { goToCart, goToHome } from "../../router/coordinator";
 import Header from '../../components/Header/Header'
 import CartPage from "../CartPage/CartPage";
 import { useContext } from "react";
@@ -14,64 +14,63 @@ import axios from "axios";
 
 const RestaurantPage = () => {
     useProtectedPage()
-    const {setRestaurantDetail} = useContext(GlobalStateContext)
+    const { setRestaurantDetail } = useContext(GlobalStateContext)
     const params = useParams()
     const navigate = useNavigate()
     const restaurantDetails = useRequestData([], `${BASE_URL}/restaurants/${params.restId}`)
     const details = restaurantDetails.restaurant
 
-
     const getRestaurantDetails = () => {
-        axios.get(`${BASE_URL}/restaurants/${params.restId}` , {
+        axios.get(`${BASE_URL}/restaurants/${params.restId}`, {
             headers: {
-              auth: localStorage.getItem('token')
+                auth: localStorage.getItem('token')
             }
-          })
+        })
             .then((response) => {
-              setRestaurantDetail(response.data.restaurant)
+                setRestaurantDetail(response.data.restaurant)
             })
             .catch((error) => {
-              alert('Ocorreu um erro, tente novamente')
+                alert('Ocorreu um erro, tente novamente')
             })
     }
 
     useEffect(() => {
-            getRestaurantDetails()
+        getRestaurantDetails()
     }, [])
 
     const categories = details && details.products.map((product) => {
-            return product.category
-        })
+        return product.category
+    })
 
     const filterCategories = categories && categories.filter((cate, index) => {
         return categories.indexOf(cate) === index;
     })
 
     const renderProducts = () => {
-        const categoriesRender = 
-        filterCategories && 
-        filterCategories.map((categorie) => {
-            return (
-                <div key={Math.random()}>
-                    <hr />
-                    <p><b>{categorie}</b></p>
-                    {details &&
-                        details.products.map((prod) => {
-                            if (categorie === prod.category) {
-                                return (
-                                    <CardProduct product={prod} key={prod.id}/>
-                                )
-                            }
-                        })}
-                </div>
-            )
-        })
+        const categoriesRender =
+            filterCategories &&
+            filterCategories.map((categorie) => {
+                return (
+                    <div key={Math.random()}>
+                        <hr />
+                        <p><b>{categorie}</b></p>
+                        {details &&
+                            details.products.map((prod) => {
+                                if (categorie === prod.category) {
+                                    return (
+                                        <CardProduct product={prod} key={prod.id} />
+                                    )
+                                }
+                            })}
+                    </div>
+                )
+            })
         return categoriesRender
     }
 
     return (
         <ContainerRestaurant>
-            <Header title={'Restaurante'} goTo={goToHome}/>
+            <Header title={'Restaurante'} goTo={goToHome} />
             <DivTest>
                 <DivImagem src={details && details.logoUrl} />
                 <DivNome>{details && details.name}</DivNome>
@@ -86,7 +85,6 @@ const RestaurantPage = () => {
                     <div>{details && details.address}</div>
                 </EsperaEFrete>
             </DivTest>
-            <button onClick={() => goToCart(navigate)}>carrinho</button>
             {renderProducts()}
         </ContainerRestaurant>
     )
