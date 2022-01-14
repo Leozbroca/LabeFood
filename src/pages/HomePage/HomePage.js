@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { MainContainer, DivCategories, DivCards, StyledInput, DivForm } from "./styles";
@@ -10,27 +10,33 @@ import SearchIcon from '@material-ui/icons/Search';
 import Header from '../../components/Header/Header'
 import LabelBottomNavigation from '../../components/Footer/Footer'
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
+import ActiveOrderCard from "./ActiveOrderCard";
 
 
 const HomePage = () => {
     //     useProtectedPage()
     const navigate = useNavigate()
-    const { restaurants, setColors } = useContext(GlobalStateContext)
-    const { form, onChangeInput, clear } = useForm({ restaurant: '' })
-    const [text, setText] = useState('')
-    const [control, setControl] = useState(0)
+    const token = localStorage.getItem('token') //Chave de acesso
+    const { restaurants, setColors, order } = useContext(GlobalStateContext)
+    const { form, onChangeInput, clear } = useForm({ restaurant: '' }) //Campo de buscar
+    const [text, setText] = useState('') //Busca pré definida
+    const [control, setControl] = useState(0) //Controla busca por tipo de comida
+    
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setColors.setColorHome('#5cb646')
         setColors.setColorCart('')
         setColors.setColorProfile('')
     }, [])
 
-
+    // Troca de página
     const goToRestDetails = (id) => {
         goToRestaurant(navigate, id)
     }
 
+    
+
+    // Busca pré definida por tipo de comida
     const onChangeText = (value) => {
         setText(value)
         switch (value) {
@@ -101,20 +107,25 @@ const HomePage = () => {
                 setControl(0)
         }
     }
+
     const renderRestaurant = () => {
+        //Caso campo de busca vazio
         if (control === 0) {
             const listRestaurants = restaurants.filter((item) => {
                 return item.name.toLowerCase().includes(form.restaurant.toLowerCase())
             }).map((rest) => {
                 return (
                     <CardRestaurant
+                        key = {rest.id}
                         restaurant={rest}
                         changePage={() => goToRestDetails(rest.id)}
                     />
                 )
             })
             return listRestaurants
-        } else {
+        } 
+        //Caso campo de busca preenchido
+        else {
             const listRestaurants = restaurants.filter((item) => {
                 return item.name.toLowerCase().includes(form.restaurant.toLowerCase())
             }).filter((restaurant) => {
@@ -122,6 +133,7 @@ const HomePage = () => {
             }).map((rest) => {
                 return (
                     <CardRestaurant
+                        key = {rest.id}
                         restaurant={rest}
                         changePage={() => goToRestDetails(rest.id)}
                     />
@@ -133,8 +145,10 @@ const HomePage = () => {
 
 
     return (
+        
         <MainContainer>
             <Header title={'Future Eats'} />
+
             <DivForm>
                 <StyledInput
                     name='restaurant'
@@ -149,6 +163,7 @@ const HomePage = () => {
                     }}
                 />
             </DivForm>
+
             {form.restaurant === '' ? <DivCategories>
                 <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
                 <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>
@@ -160,11 +175,17 @@ const HomePage = () => {
                 <Typography color={control === 8 ? 'secondary' : 'primary'} onClick={() => onChangeText('Petiscos')}><b>Petiscos</b></Typography>
                 <Typography color={control === 9 ? 'secondary' : 'primary'} onClick={() => onChangeText('Mexicana')}><b>Mexicana</b></Typography>
             </DivCategories> : <div></div>}
-
+                
             <DivCards>
                 {renderRestaurant()}
+                {order && <ActiveOrderCard
+                    restaurantName = {order.restaurantName}
+                    totalPrice = {order.totalPrice}
+                />}
             </DivCards>
+            
             <LabelBottomNavigation />
+            
         </MainContainer>
     )
 }

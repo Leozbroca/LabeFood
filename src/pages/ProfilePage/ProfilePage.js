@@ -15,7 +15,7 @@ import Header from '../../components/Header/Header'
 
 const ProfilePage = () => {
     useProtectedPage()
-    const { setColors } = useContext(GlobalStateContext)
+    const { setColors, history } = useContext(GlobalStateContext)
     const getProfile = useRequestData([], `${BASE_URL}/profile`)
     const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
     const profile = getProfile.user

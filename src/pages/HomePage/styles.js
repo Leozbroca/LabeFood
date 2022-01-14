@@ -50,3 +50,28 @@ export const StyledInput = styled(TextField)`
 export const DivForm = styled.form`
 margin-top:20px;
 `
+
+export const DivOrder = styled.div `
+    width: 100vw;
+    height: 125px;
+    background-color: #5cb646;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`
+
+export const DivOrderInfo = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+
+    p {
+        margin 4.5px;
+        font-size: 18px;
+    }
+
+    span {
+        font-weight: bolder
+    }
+`

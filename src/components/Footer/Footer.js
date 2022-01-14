@@ -17,6 +17,8 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
+
+
 const useStyles = makeStyles({
   root: props => ({
     width: '100%',
@@ -47,12 +49,14 @@ export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('recents');
   const props = {colorHome: colors.colorHome, colorCart: colors.colorCart, colorProfile: colors.colorProfile};
   const classes = useStyles(props);
-
+  
   return (
+    
     <BottomNavigation value={value} className={classes.root}>
       <BottomNavigationAction className={classes.home} onClick={() => goToHome(navigate)} value="home" icon={<HomeOutlinedIcon fontSize='large'/>} />
       <BottomNavigationAction className={classes.cart} onClick={() => goToCart(navigate)} value="cart" icon={<ShoppingCartOutlinedIcon fontSize='large'/>} />
       <BottomNavigationAction className={classes.profile} onClick={() => goToProfile(navigate)} value="profile" icon={<PersonOutlineOutlinedIcon fontSize='large'/>} />
     </BottomNavigation>
-  );
+    
+);
 }
