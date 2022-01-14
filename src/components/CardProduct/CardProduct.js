@@ -8,9 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const CardProduct = (props) => {
-
-    const { cart, setCart } = useContext(GlobalStateContext)
+    
     const notify = () => toast.success("Adicionado");
+    const { cart, setCart } = useContext(GlobalStateContext)
 
     const addToCart = (prod) => {
         const index = cart.findIndex((i) => i.id === prod.id)

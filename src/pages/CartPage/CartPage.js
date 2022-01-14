@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { Button, Typography } from "@material-ui/core";
@@ -8,6 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header/Header'
 import BASE_URL from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 import {
   ContainerCard,
@@ -27,24 +32,39 @@ import {
   DivTest,
   EsperaEFrete
 } from "./styles";
+import axios from "axios";
 
 const CartPage = () => {
   useProtectedPage()
   const { cart, setCart, setColors, count, setCount, restaurantDetail, setRestaurantDetail } = useContext(GlobalStateContext)
-  const notify = () => toast.error("removido");
+  const [valueToPay, setValueToPay] = useState(0)
+  const [value, setValue] = useState('');
+
   const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
   const address = getAddress.address
   const details = restaurantDetail
+  
+  const notify = () => toast.error("removido");
+  
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   useEffect(() => {
     setColors.setColorHome('')
     setColors.setColorCart('#5cb646')
     setColors.setColorProfile('')
-  }, [])
+    onChangeValue()
+  }, [cart])
 
-  // console.log(getAddress, address)
-  console.log('b', restaurantDetail)
-  console.log('c', details)
+  const onChangeValue = () => {
+    let priceToPay = 0;
+    cart.forEach((prod) => {
+      priceToPay += Number(prod.price) * prod.amount;
+    });
+    const valueShipping = renderCart == false ? 0 : details.shipping
+    setValueToPay(priceToPay + valueShipping)
+  }
 
   const removeFromCart = (itemToRemove) => {
     const index = cart.findIndex((i) => i.id === itemToRemove.id);
@@ -60,10 +80,31 @@ const CartPage = () => {
     notify()
   };
 
-  let priceToPay = 0;
-  cart.forEach((prod) => {
-    priceToPay += Number(prod.price) * prod.amount;
-  });
+  const confirmPayment = (id) => {
+    const productPay = []
+    cart && cart.forEach((prod) => {
+      productPay.push({
+        id: prod.id,
+        quantity: prod.amount
+      })
+    })
+    const body = {
+      products: productPay,
+      paymentMethod: value
+    }
+    console.log('produ', productPay)
+    axios.post(`${BASE_URL}/restaurants/${id}/order`, body,  {
+      headers: {
+        auth: localStorage.getItem('token')
+      }
+    })
+    .then((res) => {
+      console.log('deu certo', res.data)
+    })
+    .catch((err) => {
+      console.log('deu erro', err.response)
+    })
+  }
 
   const renderCart = cart && cart.map((product) => {
     return (
@@ -88,14 +129,18 @@ const CartPage = () => {
 
   return (
     <ContainerCart>
+
       <ToastContainer position='top-center' autoClose={2000} />
+
       <Header title={'Meu carrinho'} />
+
       <DivTextAdress>
         <div>
           <p>Endereço de entrega</p>
           <p><b>{address && address.street}, {address && address.number}</b></p>
         </div>
       </DivTextAdress>
+
       {renderCart == false ? ''
         : <DivTest>
           <DivImagem src={details && details.logoUrl} />
@@ -116,28 +161,33 @@ const CartPage = () => {
         {renderCart == false ? <p><b>Carrinho vazio</b></p> : renderCart}
       </RenderCart>
 
-      
-
-      <LabelBottomNavigation />
       <DivSubTotal>
         <h3>SUBTOTAL</h3>
-        <Typography color={'secondary'}><b>R$0,00</b></Typography>
+        <Typography color={'secondary'}><b>R${valueToPay.toFixed(2)}</b></Typography>
       </DivSubTotal>
+
       <DivPayment>
         <p>Forma de pagamento</p>
         <hr />
-        <div>
-          <input type="checkbox" />
-          <label>Dinheiro</label>
-        </div>
-        <div>
-          <input type="checkbox" />
-          <label>Cartão de crédito</label>
-        </div>
+        <FormControl component="fieldset">
+          {/* <FormLabel component="legend"></FormLabel> */}
+          <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+            <FormControlLabel value="money" control={<Radio />} label="Dinheiro" />
+            <FormControlLabel value="creditcard" control={<Radio />} label="Cartão de Crédito" />
+          </RadioGroup>
+        </FormControl>
       </DivPayment>
+
       <DivButtonStyled>
-        <StyledButton color={renderCart == false ? 'tertiary' : 'secondary'} variant="contained" type="submit"><b>Confirmar</b></StyledButton>
+        <StyledButton
+          color={renderCart == false ? 'tertiary' : 'secondary'}
+          variant="contained"
+          type="submit"
+          onClick={() => confirmPayment(details.id)}><b>Confirmar</b></StyledButton>
       </DivButtonStyled>
+
+      <LabelBottomNavigation />
+
     </ContainerCart>
   )
 }

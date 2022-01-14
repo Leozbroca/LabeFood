@@ -115,7 +115,7 @@ export const DivPayment = styled.div`
         margin-bottom: 5px;
     }
     label{
-        margin-left: 8px;
+        /* margin-left: 8px; */
     }
 `
 
