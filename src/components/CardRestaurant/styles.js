@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 
-export const DivTest = styled.div`
+export const ContainerCard = styled.div`
     display:flex;
     flex-direction: column;
     width: 80vw;
@@ -13,7 +13,7 @@ export const DivTest = styled.div`
     cursor: pointer;
 `
 
-export const DivImagem = styled.img`
+export const DivImg = styled.img`
     width: 100%;
     height: 170px;
     border-top-left-radius:8px;
@@ -21,13 +21,13 @@ export const DivImagem = styled.img`
     object-fit: auto;
 `
 
-export const DivNome = styled.div`
+export const DivName = styled.div`
     color:#5cb646;
     margin:12px 16px 4px 16px;
     font-size:16px;
 `
 
-export const EsperaEFrete = styled.div`
+export const DivInfo = styled.div`
     display:flex;
     flex-direction: row;
     justify-content: space-between;

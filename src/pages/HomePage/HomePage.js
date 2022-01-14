@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { MainContainer, DivCategories, DivCentralizando, StyledInput, DivForm } from "./styles";
+import { MainContainer, DivCategories, DivCards, StyledInput, DivForm } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
 // import useProtectedPage from "../../hooks/useProtectedPage";
 import { Typography, InputAdornment } from '@material-ui/core';
@@ -16,7 +16,7 @@ const HomePage = () => {
     //     useProtectedPage()
     const navigate = useNavigate()
     const { restaurants, setColors } = useContext(GlobalStateContext)
-    const { form, onChangeInput, clear } = useForm({ restaurante: '' })
+    const { form, onChangeInput, clear } = useForm({ restaurant: '' })
     const [text, setText] = useState('')
     const [control, setControl] = useState(0)
 
@@ -103,31 +103,31 @@ const HomePage = () => {
     }
     const renderRestaurant = () => {
         if (control === 0) {
-            const listaRestaurantes = restaurants.filter((item) => {
-                return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
-            }).map((restaurante) => {
+            const listRestaurants = restaurants.filter((item) => {
+                return item.name.toLowerCase().includes(form.restaurant.toLowerCase())
+            }).map((rest) => {
                 return (
                     <CardRestaurant
-                        restaurant={restaurante}
-                        changePage={() => goToRestDetails(restaurante.id)}
+                        restaurant={rest}
+                        changePage={() => goToRestDetails(rest.id)}
                     />
                 )
             })
-            return listaRestaurantes
+            return listRestaurants
         } else {
-            const listaRestaurantes = restaurants.filter((item) => {
-                return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
+            const listRestaurants = restaurants.filter((item) => {
+                return item.name.toLowerCase().includes(form.restaurant.toLowerCase())
             }).filter((restaurant) => {
                 return text === restaurant.category
-            }).map((restaurante) => {
+            }).map((rest) => {
                 return (
                     <CardRestaurant
-                        restaurant={restaurante}
-                        changePage={() => goToRestDetails(restaurante.id)}
+                        restaurant={rest}
+                        changePage={() => goToRestDetails(rest.id)}
                     />
                 )
             })
-            return listaRestaurantes
+            return listRestaurants
         }
     }
 
@@ -137,8 +137,8 @@ const HomePage = () => {
             <Header title={'Future Eats'} />
             <DivForm>
                 <StyledInput
-                    name='restaurante'
-                    value={form.restaurante}
+                    name='restaurant'
+                    value={form.restaurant}
                     onChange={onChangeInput}
                     id="outlined-basic"
                     label="Restaurante"
@@ -149,7 +149,7 @@ const HomePage = () => {
                     }}
                 />
             </DivForm>
-            {form.restaurante === '' ? <DivCategories>
+            {form.restaurant === '' ? <DivCategories>
                 <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
                 <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>
                 <Typography color={control === 3 ? 'secondary' : 'primary'} onClick={() => onChangeText('Hamburguer')}><b>Hamburguer</b></Typography>
@@ -161,9 +161,9 @@ const HomePage = () => {
                 <Typography color={control === 9 ? 'secondary' : 'primary'} onClick={() => onChangeText('Mexicana')}><b>Mexicana</b></Typography>
             </DivCategories> : <div></div>}
 
-            <DivCentralizando>
+            <DivCards>
                 {renderRestaurant()}
-            </DivCentralizando>
+            </DivCards>
             <LabelBottomNavigation />
         </MainContainer>
     )

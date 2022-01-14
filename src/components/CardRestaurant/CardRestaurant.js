@@ -1,17 +1,16 @@
 import React from "react"
-import { DivImagem, DivNome, DivTest, EsperaEFrete } from "./styles"
+import { DivImg, DivName, ContainerCard, DivInfo } from "./styles"
 
 const CardRestaurant = (props) => {
     return (
-        <DivTest onClick={props.changePage}>
-            <DivImagem src={props.restaurant.logoUrl} />
-            <DivNome ><b>{props.restaurant.name}</b></DivNome>
-            <EsperaEFrete>
+        <ContainerCard onClick={props.changePage}>
+            <DivImg src={props.restaurant.logoUrl} />
+            <DivName ><b>{props.restaurant.name}</b></DivName>
+            <DivInfo>
                 <div>{props.restaurant.deliveryTime - 10} - {props.restaurant.deliveryTime} min</div>
                 <div>Frete R${props.restaurant.shipping},00</div>
-                {/* <button onClick={() => { goToRestDetails(restaurante.id) }}>TESTE</button> */}
-            </EsperaEFrete>
-        </DivTest>
+            </DivInfo>
+        </ContainerCard>
     )
 
 }
