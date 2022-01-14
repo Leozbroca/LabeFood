@@ -1,23 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { MainContainer, DivCategories, DivCentralizando, DivImagem, DivNome, DivTest, EsperaEFrete, StyledInput, DivForm } from "./styles";
+import { MainContainer, DivCategories, DivCentralizando, StyledInput, DivForm } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
 // import useProtectedPage from "../../hooks/useProtectedPage";
-import { TextField, Typography, InputAdornment } from '@material-ui/core';
+import { Typography, InputAdornment } from '@material-ui/core';
 import useForm from "../../hooks/useForm"
 import SearchIcon from '@material-ui/icons/Search';
 import Header from '../../components/Header/Header'
 import LabelBottomNavigation from '../../components/Footer/Footer'
+import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 
 
 const HomePage = () => {
-//     useProtectedPage()
+    //     useProtectedPage()
     const navigate = useNavigate()
     const { restaurants, setColors } = useContext(GlobalStateContext)
     const { form, onChangeInput, clear } = useForm({ restaurante: '' })
-    const [ text, setText ] = useState('')
-    const [ control, setControl ] = useState(0)
+    const [text, setText] = useState('')
+    const [control, setControl] = useState(0)
 
     useEffect(() => {
         setColors.setColorHome('#5cb646')
@@ -106,15 +107,10 @@ const HomePage = () => {
                 return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
             }).map((restaurante) => {
                 return (
-                    <DivTest key={restaurante.id} onClick={() => { goToRestDetails(restaurante.id) }}>
-                        <DivImagem src={restaurante.logoUrl} />
-                        <DivNome ><b>{restaurante.name}</b></DivNome>
-                        <EsperaEFrete>
-                            <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
-                            <div>Frete R${restaurante.shipping},00</div>
-                            {/* <button onClick={() => { goToRestDetails(restaurante.id) }}>TESTE</button> */}
-                        </EsperaEFrete>
-                    </DivTest>
+                    <CardRestaurant
+                        restaurant={restaurante}
+                        changePage={() => goToRestDetails(restaurante.id)}
+                    />
                 )
             })
             return listaRestaurantes
@@ -122,18 +118,13 @@ const HomePage = () => {
             const listaRestaurantes = restaurants.filter((item) => {
                 return item.name.toLowerCase().includes(form.restaurante.toLowerCase())
             }).filter((restaurant) => {
-                return text == restaurant.category
+                return text === restaurant.category
             }).map((restaurante) => {
                 return (
-                    <DivTest key={restaurante.id} onClick={() => { goToRestDetails(restaurante.id) }}>
-                        <DivImagem src={restaurante.logoUrl} />
-                        <DivNome ><b>{restaurante.name}</b></DivNome>
-                        <EsperaEFrete>
-                            <div>{restaurante.deliveryTime - 10} - {restaurante.deliveryTime} min</div>
-                            <div>Frete R${restaurante.shipping},00</div>
-                            {/* <button onClick={() => { goToRestDetails(restaurante.id) }}>TESTE</button> */}
-                        </EsperaEFrete>
-                    </DivTest>
+                    <CardRestaurant
+                        restaurant={restaurante}
+                        changePage={() => goToRestDetails(restaurante.id)}
+                    />
                 )
             })
             return listaRestaurantes
@@ -143,21 +134,21 @@ const HomePage = () => {
 
     return (
         <MainContainer>
-            <Header title={'Future Eats'}/>
+            <Header title={'Future Eats'} />
             <DivForm>
-            <StyledInput
-                name='restaurante'
-                value={form.restaurante}
-                onChange={onChangeInput}
-                id="outlined-basic"
-                label="Restaurante"
-                variant="outlined"
-                required 
-                InputProps={{
-                    startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
-                  }}
+                <StyledInput
+                    name='restaurante'
+                    value={form.restaurante}
+                    onChange={onChangeInput}
+                    id="outlined-basic"
+                    label="Restaurante"
+                    variant="outlined"
+                    required
+                    InputProps={{
+                        startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
+                    }}
                 />
-            </DivForm> 
+            </DivForm>
             {form.restaurante === '' ? <DivCategories>
                 <Typography color={control === 1 ? 'secondary' : 'primary'} onClick={() => onChangeText('Árabe')}><b>Árabe</b></Typography>
                 <Typography color={control === 2 ? 'secondary' : 'primary'} onClick={() => onChangeText('Asiática')}><b>Asiática</b></Typography>
@@ -173,7 +164,7 @@ const HomePage = () => {
             <DivCentralizando>
                 {renderRestaurant()}
             </DivCentralizando>
-            <LabelBottomNavigation/>
+            <LabelBottomNavigation />
         </MainContainer>
     )
 }
