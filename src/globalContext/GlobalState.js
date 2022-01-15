@@ -11,9 +11,13 @@ export const GlobalState = (props) => {
     const [colorProfile, setColorProfile] = useState('');
     const [count, setCount] = useState(0)
     const [restaurantDetail, setRestaurantDetail] = useState({})
+    const [order, setOrderValue] = useState({}) //Pedido em andamento
+    const [history, setHistoryValue] = useState([]) //Histórico de pedidos
     
     useEffect(() => {
         const token = localStorage.getItem("token")
+
+        // Localizar resturantes
         const getRestaurants = () => { 
             axios.get(`${BASE_URL}/restaurants`, {
                 headers: {
@@ -28,14 +32,52 @@ export const GlobalState = (props) => {
                 alert(err.response.data.message)
             })
         }
-        getRestaurants()
+
+        // Localizar pedido em andamento
+        const getActiveOrder = () => {
+    
+            axios
+            .get(`${BASE_URL}/active-order`, {
+                headers: {
+                    auth: token
+                }
+            })
+            .then((res) => {
+                setOrderValue(res.data.order)
+            })
+            .catch((err) => {
+                console.log(err.response.data.message)
+            })
+
+        }
+
+        // Localizar histórico de pedidos
+        const ordersHistory = () => {
+            axios
+            .get(`${BASE_URL}/orders/history`, {
+                headers: {
+                    auth: token
+                }
+            })
+            .then((res) => {
+                setHistoryValue(res.data)
+                console.log(history)
+            })
+            .catch((err) => {
+                console.log(err.response.data.message)
+            })
+        }
+
+        ordersHistory();
+        getActiveOrder();
+        getRestaurants();
     }, [])
     
     const colors = {colorHome, colorCart, colorProfile}
     const setColors = {setColorHome, setColorCart, setColorProfile}
 
     return(
-     <GlobalStateContext.Provider value={{restaurants, cart, setCart, colors, setColors, count, setCount, restaurantDetail, setRestaurantDetail}}>
+     <GlobalStateContext.Provider value={{restaurants, order, history, cart, setCart, colors, setColors, count, setCount, restaurantDetail, setRestaurantDetail}}>
         {props.children}
     </GlobalStateContext.Provider>
     )
