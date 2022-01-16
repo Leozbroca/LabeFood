@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router";
 import { StyledButton, StyledInput, DivForm } from "./styles";
@@ -13,7 +13,6 @@ const EditSignUpForm = () => {
         event.preventDefault()
         updateProfile(form, clear, token, navigate)
     }
-
 
     return (
         <DivForm>

@@ -11,7 +11,6 @@ export const login = (body, clear, navigate) => {
             goToHome(navigate)
         })
         .catch((err) => {
-            console.log('loginer', err)
         })
 }
 
@@ -23,31 +22,27 @@ export const signup = (body, clear, navigate) => {
             clear()
             goToAdress(navigate)
             alert(res)
-            console.log('cadastro', res)
         })
         .catch((err) => {
-            console.log('err', err.response.data.message)
             alert(err.response.data.message)
 
         })
 }
 
 export const addAdress = (body, clear, token, navigate) => {
-axios
-    .put(`${BASE_URL}/address`, body, {
-        headers: {
-            auth: token
-      }
-    })
-    .then((res) => {
-        localStorage.setItem('token', res.data.token)
-        clear()
-        console.log('cadastro', res)
-        goToHome(navigate)
-    })
-    .catch((err) => {
-        console.log('errAdress', err.response.data.message)
-    })
+    axios
+        .put(`${BASE_URL}/address`, body, {
+            headers: {
+                auth: token
+            }
+        })
+        .then((res) => {
+            localStorage.setItem('token', res.data.token)
+            clear()
+            goToHome(navigate)
+        })
+        .catch((err) => {
+        })
 
 }
 
@@ -56,18 +51,16 @@ export const editAddress = (body, clear, token, navigate) => {
         .put(`${BASE_URL}/address`, body, {
             headers: {
                 auth: token
-          }
+            }
         })
         .then((res) => {
             localStorage.setItem('token', res.data.token)
             clear()
-            console.log('cadastro', res)
             goToProfile(navigate)
         })
         .catch((err) => {
-            console.log('errAdress', err.response.data.message)
         })
-    
+
 }
 
 export const updateProfile = (body, clear, token, navigate) => {
@@ -75,7 +68,7 @@ export const updateProfile = (body, clear, token, navigate) => {
         .put(`${BASE_URL}/profile`, body, {
             headers: {
                 auth: token
-          }
+            }
         })
         .then((res) => {
             clear()
@@ -85,7 +78,7 @@ export const updateProfile = (body, clear, token, navigate) => {
         .catch((err) => {
             console.log('errAdress', err.response.data.message)
         })
-    
+
 }
 
 

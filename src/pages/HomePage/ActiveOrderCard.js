@@ -5,7 +5,7 @@ import * as Styled from './styles'
 const ActiveOrderCard = (props) => {
     return (
         <Styled.DivOrder>
-            <AccessTimeIcon style={{ fontSize: 50 }}/>
+            <AccessTimeIcon style={{ fontSize: 50 }} />
             <Styled.DivOrderInfo>
                 <p><b>Pedido em andamento</b></p>
                 <p>{props.restaurantName}</p>

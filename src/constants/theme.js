@@ -1,5 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
-import { errorColor, neutralColor, primaryColor, secondaryColor, tertiaryColor } from "./colors";
+import { neutralColor, primaryColor, secondaryColor} from "./colors";
 
 const theme = createTheme({
     palette: {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import { Button, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import LabelBottomNavigation from '../../components/Footer/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,7 +38,7 @@ import axios from "axios";
 
 const CartPage = () => {
   useProtectedPage()
-  const { cart, setCart, setColors, count, setCount, restaurantDetail, setRestaurantDetail, control, setControl } = useContext(GlobalStateContext)
+  const { cart, setCart, setColors, count, setCount, restaurantDetail, control, setControl } = useContext(GlobalStateContext)
   const [valueToPay, setValueToPay] = useState(0)
   const [value, setValue] = useState('');
 
