@@ -11,8 +11,6 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
 const Router = () => {
     return (
         <BrowserRouter>

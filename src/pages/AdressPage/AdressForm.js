@@ -94,7 +94,7 @@ const AdressForm = () => {
                     label='Estado'
                     placeholder='Estado'
                     variant='outlined'
-                    required 
+                    required
                 />
 
                 <StyledButton color='secondary' variant="contained" type="submit">

@@ -1,7 +1,7 @@
-import {SelectDiv} from './styles'
+import { SelectDiv } from './styles'
 
-const Select = () =>{
-    return(
+const Select = () => {
+    return (
         <SelectDiv>
             <select>
                 <option>Oi</option>

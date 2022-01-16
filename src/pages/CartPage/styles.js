@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Button, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 export const ContainerCart = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const ContainerCard = styled.div`
@@ -23,7 +23,6 @@ export const DivButton = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* border: 1px solid black; */
     position: absolute;
     margin-left: 239px;
 
@@ -53,8 +52,6 @@ export const DivImg = styled.div`
 `
 
 export const DivText = styled.div`
-/* border: 1px solid black; */
-
 p{
     width: 200px;
 }
@@ -66,7 +63,6 @@ export const DivQuant = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* border: 1px solid black; */
     position: absolute;
     margin-left: 294px;
     p{
@@ -81,7 +77,7 @@ export const DivQuant = styled.div`
 `
 
 export const RenderCart = styled.div`
-margin-bottom: 70px;
+    margin-bottom: 70px;
 `
 
 export const DivTextAdress = styled.div`
@@ -95,7 +91,6 @@ export const DivTextAdress = styled.div`
     div{
     }
     p{
-        /* margin-left: 16px; */
         margin: 3px;
         margin-left: 16px;
     }
@@ -114,9 +109,6 @@ export const DivPayment = styled.div`
     div{
         margin-bottom: 5px;
     }
-    label{
-        /* margin-left: 8px; */
-    }
 `
 
 export const DivButtonStyled = styled.div`
@@ -127,49 +119,48 @@ export const DivButtonStyled = styled.div`
 `
 
 export const StyledButton = styled(Button)`
-  width: 328px;
-  height: 42px;
-  padding: 12px 16px;
-  border-radius: 2px;
+    width: 328px;
+    height: 42px;
+    padding: 12px 16px;
+    border-radius: 2px;
 `
 
 export const DivTest = styled.div`
-display:flex;
-flex-direction: column;
-justify-content: center;
-/* align-items: center; */
-width: 90%;
-max-width: 328px;
-height: 240px;
-margin-bottom:10px;
-margin-top: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    max-width: 328px;
+    height: 240px;
+    margin-bottom:10px;
+    margin-top: 10px;
 `
 
 export const DivImagem = styled.img`
-width: 328px;
-height: 120px;
-border-top-left-radius:8px;
-border-top-right-radius:8px;
-object-fit: auto;
+    width: 328px;
+    height: 120px;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    object-fit: auto;
 `
 
 export const DivCentralizando = styled.div`
-display:flex;
-flex-direction: column;
-align-items:center;
-justify-content: center;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
 `
 
 export const DivNome = styled.div`
-color:#5cb646;
-margin:12px 16px 4px 16px;
-font-size:16px;
+    color:#5cb646;
+    margin:12px 16px 4px 16px;
+    font-size:16px;
 `
 
 export const EsperaEFrete = styled.div`
-display:flex;
-flex-direction: row;
-justify-content: space-between;
-margin:0px 16px 0px 16px;
-color: #b8b8b8;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:0px 16px 0px 16px;
+    color: #b8b8b8;
 `

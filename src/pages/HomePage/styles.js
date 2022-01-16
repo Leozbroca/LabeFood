@@ -6,7 +6,6 @@ import { TextField } from '@material-ui/core';
 export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 `
 
@@ -42,13 +41,13 @@ export const DivCards = styled.div`
 
 
 export const StyledInput = styled(TextField)`
-  width: 80vw;
-  max-width: 328px;
-  height: 56px;
+    width: 80vw;
+    max-width: 328px;
+    height: 56px;
 `
 
 export const DivForm = styled.form`
-margin-top:20px;
+    margin-top:20px;
 `
 
 export const DivOrder = styled.div `
@@ -58,6 +57,8 @@ export const DivOrder = styled.div `
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    bottom: 60px;
 `
 
 export const DivOrderInfo = styled.div `
@@ -65,12 +66,10 @@ export const DivOrderInfo = styled.div `
     flex-direction: column;
     justify-content: center;
     text-align: left;
-
     p {
-        margin 4.5px;
+        margin: 4.5px;
         font-size: 18px;
     }
-
     span {
         font-weight: bolder
     }

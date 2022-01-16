@@ -20,17 +20,16 @@ export const DivButton = styled.div`
   /* border: 1px solid black; */
   position: absolute;
   margin-left: 239px;
-button{
-  width: 90px;
-  height: 31px;
-  margin: 7px 0 0 0px;
-  padding: 8px 20.5px 9px 21.5px;
-  border-radius: 8px 0px 8px 0px;
-  border: solid 1px ${secondaryColor};
-  background-color: white;
-  color: ${secondaryColor};
-}
-    
+  button{
+    width: 90px;
+    height: 31px;
+    margin: 7px 0 0 0px;
+    padding: 8px 20.5px 9px 21.5px;
+    border-radius: 8px 0px 8px 0px;
+    border: solid 1px ${secondaryColor};
+    background-color: white;
+    color: ${secondaryColor};
+  }  
 `
 
 export const DivImg = styled.div`
@@ -46,48 +45,42 @@ export const DivImg = styled.div`
 `
 
 export const DivText = styled.div`
-/* border: 1px solid black; */
-
-p{
-    width: 200px;
-}
+  p{
+      width: 200px;
+  }
 `
 // Select
 
 export const SelectDiv = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #FF0000;
-border: 1px solid #000;
-width: 216px;
-height: 328px;
-
-
-
-select{
-  width: 90%;
-  height: 56px;
-}
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF0000;
+  border: 1px solid #000;
+  width: 216px;
+  height: 328px;
+  select{
+    width: 90%;
+    height: 56px;
+  }
 `
 export const DivQuant = styled.div`
-    height: 146px;
-    width: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* border: 1px solid black; */
-    position: absolute;
-    margin-left: 294px;
-    p{
-        border: 1px solid #5cb646;
-        border-radius: 0px 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 33px;
-        height: 33px;
-    }
+  height: 146px;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* border: 1px solid black; */
+  position: absolute;
+  margin-left: 294px;
+  p{
+      border: 1px solid #5cb646;
+      border-radius: 0px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 33px;
+      height: 33px;
+  }
 `
 

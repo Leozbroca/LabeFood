@@ -5,13 +5,12 @@ import { MainContainer } from "./styles";
 import Header from '../../components/Header/Header'
 import { goToProfile } from "../../router/coordinator";
 
-
 const EditAdressPage = () => {
     useProtectedPage()
     return (
         <MainContainer>
-            <Header title={'Endereço'} goTo={goToProfile}/>
-            <EditAdressForm/>
+            <Header title={'Endereço'} goTo={goToProfile} />
+            <EditAdressForm />
         </MainContainer>
     )
 }

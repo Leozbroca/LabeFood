@@ -14,8 +14,8 @@ const LoginForm = () => {
         event.preventDefault()
         login(form, clear, navigate)
     }
-    
-    return(
+
+    return (
         <DivForm>
             <form onSubmit={onSubmitForm}>
                 <StyledInput

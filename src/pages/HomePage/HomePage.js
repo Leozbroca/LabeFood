@@ -16,12 +16,10 @@ import ActiveOrderCard from "./ActiveOrderCard";
 const HomePage = () => {
     //     useProtectedPage()
     const navigate = useNavigate()
-    const token = localStorage.getItem('token') //Chave de acesso
     const { restaurants, setColors, order } = useContext(GlobalStateContext)
-    const { form, onChangeInput, clear } = useForm({ restaurant: '' }) //Campo de buscar
+    const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de buscar
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
-    
 
     useLayoutEffect(() => {
         setColors.setColorHome('#5cb646')
@@ -33,8 +31,6 @@ const HomePage = () => {
     const goToRestDetails = (id) => {
         goToRestaurant(navigate, id)
     }
-
-    
 
     // Busca pré definida por tipo de comida
     const onChangeText = (value) => {
@@ -116,14 +112,14 @@ const HomePage = () => {
             }).map((rest) => {
                 return (
                     <CardRestaurant
-                        key = {rest.id}
+                        key={rest.id}
                         restaurant={rest}
                         changePage={() => goToRestDetails(rest.id)}
                     />
                 )
             })
             return listRestaurants
-        } 
+        }
         //Caso campo de busca preenchido
         else {
             const listRestaurants = restaurants.filter((item) => {
@@ -133,7 +129,7 @@ const HomePage = () => {
             }).map((rest) => {
                 return (
                     <CardRestaurant
-                        key = {rest.id}
+                        key={rest.id}
                         restaurant={rest}
                         changePage={() => goToRestDetails(rest.id)}
                     />
@@ -143,9 +139,8 @@ const HomePage = () => {
         }
     }
 
-
     return (
-        
+
         <MainContainer>
             <Header title={'Future Eats'} />
 
@@ -175,17 +170,16 @@ const HomePage = () => {
                 <Typography color={control === 8 ? 'secondary' : 'primary'} onClick={() => onChangeText('Petiscos')}><b>Petiscos</b></Typography>
                 <Typography color={control === 9 ? 'secondary' : 'primary'} onClick={() => onChangeText('Mexicana')}><b>Mexicana</b></Typography>
             </DivCategories> : <div></div>}
-                
+
             <DivCards>
                 {renderRestaurant()}
-                {order && <ActiveOrderCard
-                    restaurantName = {order.restaurantName}
-                    totalPrice = {order.totalPrice}
-                />}
+                {order === null ? <></> : <ActiveOrderCard
+                    restaurantName={order.restaurantName}
+                    totalPrice={order.totalPrice} />}
             </DivCards>
-            
+
             <LabelBottomNavigation />
-            
+
         </MainContainer>
     )
 }

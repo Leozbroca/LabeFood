@@ -9,8 +9,8 @@ const EditSignUpPage = () => {
     useProtectedPage()
     return (
         <MainContainer>
-            <Header title={'Editar'} goTo={goToProfile}/>
-            <EditSignUpForm/>
+            <Header title={'Editar'} goTo={goToProfile} />
+            <EditSignUpForm />
         </MainContainer>
     )
 }

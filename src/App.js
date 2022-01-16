@@ -8,7 +8,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalState>
-        <Router/>
+        <Router />
       </GlobalState>
     </ThemeProvider>
   );

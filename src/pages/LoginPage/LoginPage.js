@@ -9,10 +9,10 @@ import { MainContainer } from "./styles";
 const LoginPage = () => {
     useUnprotectedPage()
     const navigate = useNavigate()
-    
+
     return (
         <MainContainer>
-            <img src={logo} alt={'logotipo'}/>
+            <img src={logo} alt={'logotipo'} />
             <p><b>Entrar</b></p>
             <LoginForm />
             <div onClick={() => goToSignUp(navigate)}>
