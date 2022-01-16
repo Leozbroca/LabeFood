@@ -25,6 +25,7 @@ const LoginForm = () => {
                     id="outlined-basic"
                     label="E-mail"
                     variant="outlined"
+                    type='email'
                     required />
 
 
@@ -35,6 +36,7 @@ const LoginForm = () => {
                     id="outlined-basic"
                     label="Senha"
                     variant="outlined"
+                    type='password'
                     required />
 
                 <StyledButton color='secondary' variant="contained" type="submit"><b>Entrar</b></StyledButton>

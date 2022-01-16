@@ -30,6 +30,7 @@ const SignUpForm = () => {
                     onChange={onChangeInput}
                     label="Nome e Sobrenome"
                     variant="outlined"
+                    required
                 />
 
                 <StyledInput
@@ -38,6 +39,7 @@ const SignUpForm = () => {
                     onChange={onChangeInput}
                     label="E-mail"
                     variant="outlined"
+                    required
                 />
 
                 <StyledInput
@@ -46,6 +48,7 @@ const SignUpForm = () => {
                     onChange={onChangeInput}
                     label="CPF"
                     variant="outlined"
+                    required
                 />
 
                 <StyledInput
@@ -55,6 +58,7 @@ const SignUpForm = () => {
                     id="outlined-basic"
                     label="Senha"
                     variant="outlined"
+                    required
                 />
 
                 <StyledInput
@@ -63,6 +67,7 @@ const SignUpForm = () => {
                     onChange={onChangeConfirm}
                     label="Confirme a senha anterior"
                     variant="outlined"
+                    required
                 />
 
                 <StyledButton color='secondary' variant="contained" type="submit"><b>Criar</b></StyledButton>

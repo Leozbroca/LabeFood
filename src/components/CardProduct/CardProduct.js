@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React, { useContext } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { ContainerCard, DivButton, DivImg, DivText } from "./styles";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CardProduct = (props) => {
@@ -19,13 +19,12 @@ const CardProduct = (props) => {
         } else {
             newCart[index].amount += 1
         }
-        setCart(newCart)
         notify()
+        setCart(newCart)  
     }
 
     return (
         <ContainerCard>
-            <ToastContainer position='top-center' autoClose={2000} />
             <DivImg>
                 <img src={props.product.photoUrl} alt={'foto do produto'} />
             </DivImg>

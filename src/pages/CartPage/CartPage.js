@@ -78,9 +78,9 @@ const CartPage = () => {
     } else {
       newCart[index].amount -= 1;
     }
+    notify()
     setCart(newCart);
     setCount(count - 1);
-    notify()
   };
 
   const confirmPayment = (id) => {
@@ -122,6 +122,7 @@ const CartPage = () => {
           }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
             }
+            setCart([])
           })
         })
         .catch((err) => {
@@ -158,9 +159,7 @@ const CartPage = () => {
 
   return (
     <ContainerCart>
-
-      <ToastContainer position='top-center' autoClose={500} />
-
+      <ToastContainer position='top-center' autoClose={2000} />
       <Header title={'Meu carrinho'} />
 
       <DivTextAdress>
@@ -226,7 +225,6 @@ const CartPage = () => {
       </DivButtonStyled>
 
       <LabelBottomNavigation />
-
     </ContainerCart>
   )
 }

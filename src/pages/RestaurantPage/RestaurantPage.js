@@ -10,6 +10,7 @@ import Header from '../../components/Header/Header'
 import { useContext } from "react";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const RestaurantPage = () => {
     useProtectedPage()
@@ -68,6 +69,7 @@ const RestaurantPage = () => {
 
     return (
         <ContainerRestaurant>
+            <ToastContainer position='top-center' autoClose={2000} />
             <Header title={'Restaurante'} goTo={goToHome} />
             <DivTest>
                 <DivImagem src={details && details.logoUrl} />
