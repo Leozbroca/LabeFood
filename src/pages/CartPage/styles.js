@@ -35,6 +35,10 @@ button{
     border: solid 1px red;
     background-color: white;
     color: red;
+    :active{
+        background-color: red;
+        color: white;  
+    }
 }
     
 `

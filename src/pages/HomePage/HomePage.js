@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { MainContainer, DivCategories, DivCards, StyledInput, DivForm } from "./styles";
 import { goToRestaurant } from "../../router/coordinator";
-// import useProtectedPage from "../../hooks/useProtectedPage";
+import useProtectedPage from "../../hooks/useProtectedPage";
 import { Typography, InputAdornment } from '@material-ui/core';
 import useForm from "../../hooks/useForm"
 import SearchIcon from '@material-ui/icons/Search';
@@ -14,7 +14,7 @@ import ActiveOrderCard from "./ActiveOrderCard";
 
 
 const HomePage = () => {
-    //     useProtectedPage()
+    useProtectedPage()
     const navigate = useNavigate()
     const { restaurants, setColors, order } = useContext(GlobalStateContext)
     const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de buscar

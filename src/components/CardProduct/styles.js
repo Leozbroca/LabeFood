@@ -29,6 +29,10 @@ export const DivButton = styled.div`
     border: solid 1px ${secondaryColor};
     background-color: white;
     color: ${secondaryColor};
+    :active{
+      background-color: ${secondaryColor};
+      color: white;
+    }
   }  
 `
 
