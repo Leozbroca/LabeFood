@@ -21,7 +21,6 @@ const HomePage = () => {
     const { form, onChangeInput, clear } = useForm({ restaurant: '' }) //Campo de buscar
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
-    
 
     useLayoutEffect(() => {
         setColors.setColorHome('#5cb646')
@@ -33,8 +32,6 @@ const HomePage = () => {
     const goToRestDetails = (id) => {
         goToRestaurant(navigate, id)
     }
-
-    
 
     // Busca pré definida por tipo de comida
     const onChangeText = (value) => {
@@ -143,7 +140,6 @@ const HomePage = () => {
         }
     }
 
-
     return (
         
         <MainContainer>
@@ -178,10 +174,9 @@ const HomePage = () => {
                 
             <DivCards>
                 {renderRestaurant()}
-                {order && <ActiveOrderCard
+                {order === null ? <></> : <ActiveOrderCard
                     restaurantName = {order.restaurantName}
-                    totalPrice = {order.totalPrice}
-                />}
+                    totalPrice = {order.totalPrice}/>}
             </DivCards>
             
             <LabelBottomNavigation />

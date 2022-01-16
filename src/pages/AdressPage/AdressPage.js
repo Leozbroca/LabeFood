@@ -8,7 +8,7 @@ const AdressPage = () => {
     return (
         <MainContainer>
             <h3><b>Meu endereço</b></h3>
-            <AdressForm/>
+            <AdressForm />
         </MainContainer>
     )
 }

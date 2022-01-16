@@ -10,10 +10,10 @@ const theme = createTheme({
         secondary: {
             main: secondaryColor
         },
-        tertiary: {
-            main: tertiaryColor
-        },
-        text:{
+        // tertiary: {
+        //     main: tertiaryColor
+        // },
+        text: {
             primary: primaryColor
         },
         error: {

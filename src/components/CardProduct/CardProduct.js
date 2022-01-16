@@ -5,8 +5,6 @@ import { ContainerCard, DivButton, DivImg, DivText, DivQuant} from "./styles";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const CardProduct = (props) => {
     
     const notify = () => toast.success("Adicionado");

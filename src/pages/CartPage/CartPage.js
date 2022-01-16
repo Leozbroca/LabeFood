@@ -38,7 +38,7 @@ import axios from "axios";
 
 const CartPage = () => {
   useProtectedPage()
-  const { cart, setCart, setColors, count, setCount, restaurantDetail, setRestaurantDetail } = useContext(GlobalStateContext)
+  const { cart, setCart, setColors, count, setCount, restaurantDetail, setRestaurantDetail, control, setControl } = useContext(GlobalStateContext)
   const [valueToPay, setValueToPay] = useState(0)
   const [value, setValue] = useState('');
 
@@ -102,7 +102,7 @@ const CartPage = () => {
         }
       })
         .then((res) => {
-          console.log('deu certo', res.data)
+          setControl(control + 1)
           let timerInterval
           Swal.fire({
             title: 'Auto close alert!',
@@ -121,12 +121,10 @@ const CartPage = () => {
             }
           }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
-              console.log('I was closed by the timer')
             }
           })
         })
         .catch((err) => {
-          console.log('deu erro', err.response)
         })
     } else {
       Swal.fire({

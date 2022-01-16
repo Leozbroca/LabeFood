@@ -58,6 +58,8 @@ export const DivOrder = styled.div `
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    bottom: 60px;
 `
 
 export const DivOrderInfo = styled.div `
@@ -67,7 +69,7 @@ export const DivOrderInfo = styled.div `
     text-align: left;
 
     p {
-        margin 4.5px;
+        margin: 4.5px;
         font-size: 18px;
     }
 

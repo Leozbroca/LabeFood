@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from "react-router"
 import useForm from "../../hooks/useForm"
-import { addAdress, editAddress } from "../../services/user"
+import { editAddress } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const EditAdressForm = () => {
@@ -17,13 +17,10 @@ const EditAdressForm = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-
-
     const onSubmitForm = (event) => {
         event.preventDefault()
         editAddress(form, clear, token, navigate)
     }
-
 
     return (
         <DivForm>
@@ -95,7 +92,7 @@ const EditAdressForm = () => {
                     label='Estado'
                     placeholder='Estado'
                     variant='outlined'
-                    required 
+                    required
                 />
 
                 <StyledButton color='secondary' variant="contained" type="submit">

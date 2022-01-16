@@ -11,9 +11,6 @@ const useProtectedPage = () => {
         if (!token) {
             goToLogin(navigate)
         }
-            
-        
-
     }, [navigate])
 }
 

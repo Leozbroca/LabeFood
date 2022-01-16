@@ -11,7 +11,6 @@ const useUnprotectedPage = () => {
         if (token) {
             // goToFeed(navigate)
         }
-
     }, [navigate])
 }
 
