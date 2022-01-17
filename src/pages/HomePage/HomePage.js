@@ -25,7 +25,6 @@ const HomePage = () => {
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
     
-    let tokenToRender = localStorage.getItem('token')
     
 
     useLayoutEffect(() => {
@@ -35,7 +34,7 @@ const HomePage = () => {
     }, [])
 
     useEffect(() => {
-        getRestaurants()
+        
         
     },[])
 

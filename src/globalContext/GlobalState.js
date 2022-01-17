@@ -14,27 +14,9 @@ export const GlobalState = (props) => {
     const [order, setOrderValue] = useState({}) //Pedido em andamento
     const [history, setHistoryValue] = useState([]) //Histórico de pedidos.
     const [control, setControl] = useState(0) //Controle para renderizar card do pedido em andamento
-
-    useEffect(() => {
-        getRestaurants()
-        // Localizar pedido em andamento
-        const getActiveOrder = () => {
-
-            axios
-                .get(`${BASE_URL}/active-order`, {
-                    headers: {
-                        auth: token
-                    }
-                })
-                .then((res) => {
-                    setOrderValue(res.data.order)
-                })
-                .catch((err) => {
-                    console.log(err.response.data.message)
-                })
-
+    
     const token = localStorage.getItem("token")
-
+   
     // Localizar resturantes
     const getRestaurants = () => {
         axios.get(`${BASE_URL}/restaurants`, {
@@ -94,23 +76,7 @@ export const GlobalState = (props) => {
         getRestaurants();
     }, [control])
 
-    const token = localStorage.getItem("token")
-    
-        // Localizar resturantes
-        const getRestaurants = () => {
-            axios.get(`${BASE_URL}/restaurants`, {
-                headers: {
-                    auth: token
-                }
-            })
-                .then((res) => {
-                    setRestaurants(res.data.restaurants)
-                })
-                .catch((err) => {
-                    // console.log('err', err.response.data.message)
-                    // alert(err.response.data.message)
-                })
-        } 
+
     const colors = { colorHome, colorCart, colorProfile }
     const setColors = { setColorHome, setColorCart, setColorProfile }
 
@@ -119,4 +85,4 @@ export const GlobalState = (props) => {
             {props.children}
         </GlobalStateContext.Provider>
     )
-} 
+}
