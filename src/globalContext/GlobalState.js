@@ -17,7 +17,7 @@ export const GlobalState = (props) => {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-
+    
         // Localizar resturantes
         const getRestaurants = () => {
             axios.get(`${BASE_URL}/restaurants`, {
@@ -29,11 +29,11 @@ export const GlobalState = (props) => {
                     setRestaurants(res.data.restaurants)
                 })
                 .catch((err) => {
-                    console.log('err', err.response.data.message)
-                    alert(err.response.data.message)
+                    // console.log('err', err.response.data.message)
+                    // alert(err.response.data.message)
                 })
         }
-
+        
         // Localizar pedido em andamento
         const getActiveOrder = () => {
 

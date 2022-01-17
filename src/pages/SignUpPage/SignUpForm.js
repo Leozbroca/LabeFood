@@ -58,6 +58,7 @@ const SignUpForm = () => {
                     id="outlined-basic"
                     label="Senha"
                     variant="outlined"
+                    type="password"
                     required
                 />
 
@@ -67,6 +68,7 @@ const SignUpForm = () => {
                     onChange={onChangeConfirm}
                     label="Confirme a senha anterior"
                     variant="outlined"
+                    type="password"
                     required
                 />
 
