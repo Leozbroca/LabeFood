@@ -1,16 +1,24 @@
 import BASE_URL from "../constants/url"
 import { goToAdress, goToHome, goToProfile } from "../router/coordinator"
 import axios from "axios"
+import Swal from 'sweetalert2';
 
-export const login = (body, clear, navigate) => {
+export const login = (body, clear, navigate, value, setValue) => {
+    // const [value, setValue] = useState
     axios
         .post(`${BASE_URL}/login`, body)
         .then((res) => {
             localStorage.setItem('token', res.data.token)
             clear()
             goToHome(navigate)
+            setValue(value +1)
         })
         .catch((err) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuário ou senha incorretos',
+              })
         })
 }
 
