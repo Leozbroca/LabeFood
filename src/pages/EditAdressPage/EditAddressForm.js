@@ -5,6 +5,8 @@ import { editAddress } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const EditAdressForm = () => {
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
     const { form, onChangeInput, clear } = useForm(
         {
             street: '',
@@ -13,10 +15,9 @@ const EditAdressForm = () => {
             city: '',
             state: '',
             complement: ''
-        })
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
+    })
+    
+    //Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
         editAddress(form, clear, token, navigate)
@@ -24,7 +25,9 @@ const EditAdressForm = () => {
 
     return (
         <DivForm>
+
             <form onSubmit={onSubmitForm}>
+                
                 <StyledInput
                     name='street'
                     value={form.street}

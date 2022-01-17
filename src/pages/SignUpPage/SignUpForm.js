@@ -9,6 +9,7 @@ const SignUpForm = () => {
     const navigate = useNavigate()
     const [confirm, setConfirm] = useState('')
 
+    //Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
         if (confirm === form.password) {
@@ -16,6 +17,7 @@ const SignUpForm = () => {
         }
     }
 
+    //Alterar campo
     const onChangeConfirm = (event) => {
         setConfirm(event.target.value)
     };

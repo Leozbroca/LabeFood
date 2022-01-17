@@ -5,6 +5,8 @@ import { addAdress } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
 
 const AdressForm = () => {
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
     const { form, onChangeInput, clear } = useForm(
         {
             street: '',
@@ -13,11 +15,10 @@ const AdressForm = () => {
             city: '',
             state: '',
             complement: ''
-        })
-    const navigate = useNavigate()
+    }) 
+    
 
-    const token = localStorage.getItem('token')
-
+    // Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
         addAdress(form, clear, token, navigate)
