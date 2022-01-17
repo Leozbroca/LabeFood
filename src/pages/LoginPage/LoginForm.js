@@ -10,6 +10,7 @@ const LoginForm = () => {
     const { form, onChangeInput, clear } = useForm({ email: '', password: '' })
     const navigate = useNavigate()
 
+    //Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
         login(form, clear, navigate)

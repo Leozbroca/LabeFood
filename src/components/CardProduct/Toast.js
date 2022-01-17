@@ -6,11 +6,15 @@ function Toast() {
   const notify = () => toast.success("Adicionado");
 
   return (
+
     <div>
+
       <button onClick={notify}>Notify!</button>
-      <ToastContainer position='top-center' autoClose={1000}
+
+      <ToastContainer 
+        position='top-center' autoClose={1000}
       />
     </div>
   );
 }
-export default Toast
+export default Toast;

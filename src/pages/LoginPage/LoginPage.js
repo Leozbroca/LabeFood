@@ -22,6 +22,7 @@ const LoginPage = () => {
 
 
     return (
+
         <>
 
             {isLoading ?
@@ -38,6 +39,18 @@ const LoginPage = () => {
                 </MainContainer>}
 
         </>
+
+        <MainContainer>
+
+            <img src={logo} alt={'logotipo'} />
+            <p><b>Entrar</b></p>
+            
+            <LoginForm />
+            <div onClick={() => goToSignUp(navigate)}>
+                <p><b>Não possui cadastro? Clique aqui.</b></p>
+            </div>
+        </MainContainer>
+
     )
 }
 

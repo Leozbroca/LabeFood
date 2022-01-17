@@ -8,14 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header/Header'
 import BASE_URL from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
-
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
 import {
   ContainerCard,
   DivButton,
@@ -38,17 +35,16 @@ import axios from "axios";
 
 const CartPage = () => {
   useProtectedPage()
-  const { cart, setCart, setColors, count, setCount, restaurantDetail, control, setControl } = useContext(GlobalStateContext)
+  const { cart, setCart, setColors, count, setCount, restaurantDetail, control, setControl } = useContext(GlobalStateContext);
   const [valueToPay, setValueToPay] = useState(0)
   const [value, setValue] = useState('');
-
   const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
   const getActiveOrder = useRequestData({}, `${BASE_URL}/active-order`)
   const address = getAddress.address
   const details = restaurantDetail
-
   const notify = () => toast.error("removido");
 
+  //Alterar valor
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -60,6 +56,7 @@ const CartPage = () => {
     onChangeValue()
   }, [cart])
 
+  //Calculo de preço
   const onChangeValue = () => {
     let priceToPay = 0;
     cart.forEach((prod) => {
@@ -69,6 +66,7 @@ const CartPage = () => {
     setValueToPay(priceToPay + valueShipping)
   }
 
+  //Remover do carrinho
   const removeFromCart = (itemToRemove) => {
     const index = cart.findIndex((i) => i.id === itemToRemove.id);
     const newCart = [...cart];
@@ -83,6 +81,7 @@ const CartPage = () => {
     setCount(count - 1);
   };
 
+  //Confirmação de pedido
   const confirmPayment = (id) => {
     const productPay = []
     cart && cart.forEach((prod) => {
@@ -139,17 +138,21 @@ const CartPage = () => {
   const renderCart = cart && cart.map((product) => {
     return (
       <ContainerCard>
+
         <DivImg>
           <img src={product.photoUrl} alt={'foto do produto'} />
         </DivImg>
+
         <DivText>
           <Typography variant={'body1'} color='secondary'>{product.name}</Typography>
           <Typography variant={'subtitle2'} color='error'>{product.description}</Typography>
           <Typography variant={'body1'}>R$ {product.price}</Typography>
         </DivText>
+
         <DivQuant>
           <p>{product.amount}</p>
         </DivQuant>
+
         <DivButton>
           <button onClick={() => removeFromCart(product)}>Remover</button>
         </DivButton>
@@ -159,7 +162,9 @@ const CartPage = () => {
 
   return (
     <ContainerCart>
+
       <ToastContainer position='top-center' autoClose={2000} />
+
       <Header title={'Meu carrinho'} />
 
       <DivTextAdress>
@@ -169,17 +174,22 @@ const CartPage = () => {
         </div>
       </DivTextAdress>
 
-      {renderCart == false ? ''
+      {renderCart === false ? ''
         : <DivTest>
+
           <DivImagem src={details && details.logoUrl} />
+
           <DivNome><b>{details && details.name}</b></DivNome>
+
           <EsperaEFrete>
             <div>{details && details.category}</div>
           </EsperaEFrete>
+
           <EsperaEFrete>
             <div>{details && details.deliveryTime - 10} - {details && details.deliveryTime} min</div>
             <div>Frete R${details && details.shipping},00</div>
           </EsperaEFrete>
+
           <EsperaEFrete>
             <div>{details && details.address}</div>
           </EsperaEFrete>
@@ -190,12 +200,16 @@ const CartPage = () => {
       </RenderCart>
 
       <DivSubTotal>
+
         <h3>SUBTOTAL</h3>
+
         <Typography color={'secondary'}><b>R${valueToPay.toFixed(2)}</b></Typography>
       </DivSubTotal>
 
       <DivPayment>
+
         <p>Forma de pagamento</p>
+        
         <hr />
         <FormControl component="fieldset">
           <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>

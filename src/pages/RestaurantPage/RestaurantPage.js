@@ -19,6 +19,7 @@ const RestaurantPage = () => {
     const restaurantDetails = useRequestData([], `${BASE_URL}/restaurants/${params.restId}`)
     const details = restaurantDetails.restaurant
 
+    //Localizar informações Restaurante
     const getRestaurantDetails = () => {
         axios.get(`${BASE_URL}/restaurants/${params.restId}`, {
             headers: {
@@ -33,10 +34,12 @@ const RestaurantPage = () => {
             })
     }
 
+    //Iniciar função
     useEffect(() => {
         getRestaurantDetails()
     }, [])
 
+    //Renderiza Info Categoria
     const categories = details && details.products.map((product) => {
         return product.category
     })
@@ -46,8 +49,8 @@ const RestaurantPage = () => {
     })
 
     const renderProducts = () => {
-        const categoriesRender =
-            filterCategories &&
+
+        const categoriesRender = filterCategories &&
             filterCategories.map((categorie) => {
                 return (
                     <div key={Math.random()}>
@@ -69,8 +72,11 @@ const RestaurantPage = () => {
 
     return (
         <ContainerRestaurant>
+
             <ToastContainer position='top-center' autoClose={2000} />
+
             <Header title={'Restaurante'} goTo={goToHome} />
+
             <DivTest>
                 <DivImagem src={details && details.logoUrl} />
                 <DivNome>{details && details.name}</DivNome>
@@ -85,6 +91,7 @@ const RestaurantPage = () => {
                     <div>{details && details.address}</div>
                 </EsperaEFrete>
             </DivTest>
+            
             {renderProducts()}
         </ContainerRestaurant>
     )

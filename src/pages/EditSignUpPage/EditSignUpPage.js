@@ -7,6 +7,7 @@ import { goToProfile } from "../../router/coordinator";
 
 const EditSignUpPage = () => {
     useProtectedPage()
+    
     return (
         <MainContainer>
             <Header title={'Editar'} goTo={goToProfile} />

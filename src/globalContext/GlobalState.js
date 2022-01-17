@@ -47,7 +47,7 @@ export const GlobalState = (props) => {
                     setOrderValue(res.data.order)
                 })
                 .catch((err) => {
-                    // console.log(err.response.data.message)
+                    console.log(err.response.data.message)
                 })
 
         }
@@ -64,7 +64,7 @@ export const GlobalState = (props) => {
                     setHistoryValue(res.data)
                 })
                 .catch((err) => {
-                    // console.log(err.response.data.message)
+                    console.log(err.response.data.message)
                 })
         }
 

@@ -69,11 +69,13 @@ const ProfilePage = () => {
         }
     }
 
+    //Base para data
     const convertDate = (dateOfOrder) => {
         const date = new Date(dateOfOrder)
         return `${date.getDate()} de ${convertMonth(date.getMonth() + 1)} de ${date.getFullYear()}`
     }
 
+    //Renderizar histórico de pedido
     const histOrder = history.orders && history.orders.map((order) => {
         const date = convertDate(order.createdAt)
         return (
@@ -88,10 +90,15 @@ const ProfilePage = () => {
     })
     return (
         <ScreenContainer>
+
             <DivContainer>
+
                 <Header title={'Meu perfil'} />
+
                 <ContainerProfile>
+
                     <DivText>
+
                         <Typography variant={'body1'} color={'primary'}>
                             {profile && profile.name}
                         </Typography>
@@ -109,20 +116,24 @@ const ProfilePage = () => {
                         <Edit onClick={() => goToEditSignUp(navigate)} />
                     </DivIcon>
                 </ContainerProfile>
+
                 <ContainerAddress>
+
                     <DivTextAdd>
+
                         <Typography variant='body1' color="error">
                             Endereço Cadastrado
                         </Typography>
 
                         <Typography variant='body1' color="primary">
                             {`${address && address.street}, 
-                    ${address && address.number} - 
-                    ${address && address.neighbourhood}`}
+                            ${address && address.number} - 
+                            ${address && address.neighbourhood}`}
                         </Typography>
                     </DivTextAdd>
 
                     <DivIconAdd>
+
                         <Edit onClick={() => goToEditAddress(navigate)} />
                     </DivIconAdd>
                 </ContainerAddress>
@@ -133,7 +144,9 @@ const ProfilePage = () => {
                 </Typography>
 
                 {histOrder}
+
             </DivContainer>
+            
             <LabelBottomNavigation />
         </ScreenContainer>
     )
