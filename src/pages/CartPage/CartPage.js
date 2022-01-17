@@ -137,7 +137,7 @@ const CartPage = () => {
 
   const renderCart = cart && cart.map((product) => {
     return (
-      <ContainerCard>
+      <ContainerCard key={product.id}>
 
         <DivImg>
           <img src={product.photoUrl} alt={'foto do produto'} />
@@ -174,7 +174,7 @@ const CartPage = () => {
         </div>
       </DivTextAdress>
 
-      {renderCart === false ? ''
+      {renderCart == false ? ''
         : <DivTest>
 
           <DivImagem src={details && details.logoUrl} />
@@ -223,7 +223,6 @@ const CartPage = () => {
 
         {renderCart == false ?
           <StyledButton
-            color='tertiary'
             variant="contained"
             type="submit"
           ><b>Confirmar</b>

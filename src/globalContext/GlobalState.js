@@ -15,59 +15,62 @@ export const GlobalState = (props) => {
     const [history, setHistoryValue] = useState([]) //Histórico de pedidos.
     const [control, setControl] = useState(0) //Controle para renderizar card do pedido em andamento
 
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-    
-        // Localizar resturantes
-        const getRestaurants = () => {
-            axios.get(`${BASE_URL}/restaurants`, {
+    const token = localStorage.getItem("token")
+
+    // Localizar resturantes
+    const getRestaurants = () => {
+        axios.get(`${BASE_URL}/restaurants`, {
+            headers: {
+                auth: token
+            }
+        })
+            .then((res) => {
+                setRestaurants(res.data.restaurants)
+            })
+            .catch((err) => {
+                // console.log('err', err.response.data.message)
+                // alert(err.response.data.message)
+            })
+    }
+
+    // Localizar pedido em andamento
+    const getActiveOrder = () => {
+
+        axios
+            .get(`${BASE_URL}/active-order`, {
                 headers: {
                     auth: token
                 }
             })
-                .then((res) => {
-                    setRestaurants(res.data.restaurants)
-                })
-                .catch((err) => {
-                    // console.log('err', err.response.data.message)
-                    // alert(err.response.data.message)
-                })
-        }
-        
-        // Localizar pedido em andamento
-        const getActiveOrder = () => {
+            .then((res) => {
+                setOrderValue(res.data.order)
+            })
+            .catch((err) => {
+                // console.log(err.response.data.message)
+            })
 
-            axios
-                .get(`${BASE_URL}/active-order`, {
-                    headers: {
-                        auth: token
-                    }
-                })
-                .then((res) => {
-                    setOrderValue(res.data.order)
-                })
-                .catch((err) => {
-                    console.log(err.response.data.message)
-                })
+    }
 
-        }
+    // Localizar histórico de pedidos
+    const ordersHistory = () => {
+        axios
+            .get(`${BASE_URL}/orders/history`, {
+                headers: {
+                    auth: token
+                }
+            })
+            .then((res) => {
+                setHistoryValue(res.data)
+            })
+            .catch((err) => {
+                // console.log(err.response.data.message)
+            })
+    }
 
-        // Localizar histórico de pedidos
-        const ordersHistory = () => {
-            axios
-                .get(`${BASE_URL}/orders/history`, {
-                    headers: {
-                        auth: token
-                    }
-                })
-                .then((res) => {
-                    setHistoryValue(res.data)
-                })
-                .catch((err) => {
-                    console.log(err.response.data.message)
-                })
-        }
-
+    useEffect(() => {
+        getRestaurants();
+        getActiveOrder();
+        ordersHistory();
         ordersHistory();
         getActiveOrder();
         getRestaurants();
