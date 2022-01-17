@@ -16,24 +16,7 @@ export const GlobalState = (props) => {
     const [control, setControl] = useState(0) //Controle para renderizar card do pedido em andamento
 
     useEffect(() => {
-        const token = localStorage.getItem("token")
-    
-        // Localizar resturantes
-        const getRestaurants = () => {
-            axios.get(`${BASE_URL}/restaurants`, {
-                headers: {
-                    auth: token
-                }
-            })
-                .then((res) => {
-                    setRestaurants(res.data.restaurants)
-                })
-                .catch((err) => {
-                    // console.log('err', err.response.data.message)
-                    // alert(err.response.data.message)
-                })
-        }
-        
+        getRestaurants()
         // Localizar pedido em andamento
         const getActiveOrder = () => {
 
@@ -73,6 +56,23 @@ export const GlobalState = (props) => {
         getRestaurants();
     }, [control])
 
+    const token = localStorage.getItem("token")
+    
+        // Localizar resturantes
+        const getRestaurants = () => {
+            axios.get(`${BASE_URL}/restaurants`, {
+                headers: {
+                    auth: token
+                }
+            })
+                .then((res) => {
+                    setRestaurants(res.data.restaurants)
+                })
+                .catch((err) => {
+                    // console.log('err', err.response.data.message)
+                    // alert(err.response.data.message)
+                })
+        } 
     const colors = { colorHome, colorCart, colorProfile }
     const setColors = { setColorHome, setColorCart, setColorProfile }
 

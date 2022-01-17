@@ -12,15 +12,21 @@ import LabelBottomNavigation from '../../components/Footer/Footer'
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import ActiveOrderCard from "./ActiveOrderCard";
 import ScreenLoading from "../../components/ScreenLoading/ScreenLoading";
+import axios from "axios";
+import BASE_URL from "../../constants/url";
+import { render } from "react-dom";
 
 
 const HomePage = () => {
     useProtectedPage()
     const navigate = useNavigate()
-    const { restaurants, setColors, order } = useContext(GlobalStateContext)
+    const { restaurants, setRestaurants, setColors, order } = useContext(GlobalStateContext)
     const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de busca
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
+    
+    let tokenToRender = localStorage.getItem('token')
+    
 
     useLayoutEffect(() => {
         setColors.setColorHome('#5cb646')
@@ -29,8 +35,27 @@ const HomePage = () => {
     }, [])
 
     useEffect(() => {
+        getRestaurants()
         
-    })
+    },[])
+
+    const token = localStorage.getItem("token")
+    
+    // Localizar resturantes
+    const getRestaurants = () => {
+        axios.get(`${BASE_URL}/restaurants`, {
+            headers: {
+                auth: token
+            }
+        })
+            .then((res) => {
+                setRestaurants(res.data.restaurants)
+            })
+            .catch((err) => {
+                // console.log('err', err.response.data.message)
+                // alert(err.response.data.message)
+            })
+    }
 
     // Troca de página
     const goToRestDetails = (id) => {
@@ -143,7 +168,7 @@ const HomePage = () => {
             return listRestaurants
         }
     }
-
+ 
     return (
 
         <MainContainer>
