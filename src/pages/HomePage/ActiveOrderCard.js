@@ -7,7 +7,13 @@ const ActiveOrderCard = (props) => {
         <>
             {props.totalPrice > 0 ?
                 <Styled.DivOrder>
+
+
                     <AccessTimeIcon style={{ fontSize: 50 }} />
+
+
+                    <AccessTimeIcon style={{ fontSize: 50 }} />
+
                     <Styled.DivOrderInfo>
                         <p><b>Pedido em andamento</b></p>
                         <p>{props.restaurantName}</p>
