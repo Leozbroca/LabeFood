@@ -8,6 +8,10 @@ const ActiveOrderCard = (props) => {
             {props.totalPrice > 0 ?
                 <Styled.DivOrder>
 
+
+                    <AccessTimeIcon style={{ fontSize: 50 }} />
+
+
                     <AccessTimeIcon style={{ fontSize: 50 }} />
 
                     <Styled.DivOrderInfo>
