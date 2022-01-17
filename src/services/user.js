@@ -21,7 +21,6 @@ export const signup = (body, clear, navigate) => {
             localStorage.setItem('token', res.data.token)
             clear()
             goToAdress(navigate)
-            alert(res)
         })
         .catch((err) => {
             alert(err.response.data.message)

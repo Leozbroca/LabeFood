@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLayoutEffect } from "react";
+import React, { useContext, useState, useLayoutEffect, useEffect } from "react";
 import { useNavigate } from "react-router";
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
 import { MainContainer, DivCategories, DivCards, StyledInput, DivForm } from "./styles";
@@ -11,6 +11,7 @@ import Header from '../../components/Header/Header'
 import LabelBottomNavigation from '../../components/Footer/Footer'
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import ActiveOrderCard from "./ActiveOrderCard";
+import ScreenLoading from "../../components/ScreenLoading/ScreenLoading";
 
 
 const HomePage = () => {
@@ -26,6 +27,10 @@ const HomePage = () => {
         setColors.setColorCart('')
         setColors.setColorProfile('')
     }, [])
+
+    useEffect(() => {
+        
+    })
 
     // Troca de página
     const goToRestDetails = (id) => {

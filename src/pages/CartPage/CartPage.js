@@ -104,8 +104,8 @@ const CartPage = () => {
           setControl(control + 1)
           let timerInterval
           Swal.fire({
-            title: 'Auto close alert!',
-            html: 'I will close in <b></b> milliseconds.',
+            title: 'Processando pagamento',
+            html: 'Pagamento processado em <b></b> segundos.',
             timer: 2000,
             timerProgressBar: true,
             didOpen: () => {
