@@ -19,7 +19,6 @@ const useStyles = makeStyles({
     bottom: 0,
     zIndex: 1,
     '& button': {
-      // color: `#5cb646`,
       paddingBottom: '15px',
     }
   }),

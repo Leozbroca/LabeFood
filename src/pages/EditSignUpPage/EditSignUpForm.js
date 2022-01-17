@@ -9,6 +9,7 @@ const EditSignUpForm = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
+    //Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
         updateProfile(form, clear, token, navigate)

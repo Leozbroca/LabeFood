@@ -17,7 +17,6 @@ export const DivButton = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* border: 1px solid black; */
   position: absolute;
   margin-left: 239px;
   button{

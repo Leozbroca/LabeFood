@@ -1,68 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto LabeFoods - FutureEats
 
-## Available Scripts
+Status do Projeto: Concluído. 
 
-In the project directory, you can run:
+### Sobre o Projeto
 
-### `npm start`
+O projeto LabeFoods teve como objetivo simular um app de entregas tal como o UberEats, 
+Rappi e Ifood. Para tal foi feita integração com a API disponibilizada, utilizando o React Js
+como framework. Layout para mobile. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Funcionalidades 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Tela de Login 
 
-### `npm test`
+- Tela de Cadastro  
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Visualização da lista de restaurantes 
 
-### `npm run build`
+- Filtro de restaurantes por categoria ou nome
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Visualização dos detalhes do restaurante e pratos disponíveis 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Adicionar um produto ao carrinho 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Visualização dos produtos no carrinho 
 
-### `npm run eject`
+- Remover um produto do carrinho 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Escolha de forma de pagamento e confirmação do pedido
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Visualização de card indicando o pedido em andamento 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Visualização do perfil e endereço cadastrados
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Visualização do histórico de pedidos
 
-## Learn More
+- Edição de informações de perfil e cadastro
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Tecnologias e biblioticas utilizadas 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React JS 
+- Javascript
+- react-router-dom
+- styled-components 
+- Material UI
+- React-Toastify 
+- axios
+- API
+- sweet alert
+- moment 
 
-### Code Splitting
+### API utilizada
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+https://documenter.getpostman.com/view/7549981/SWTEdGtT
 
-### Analyzing the Bundle Size
+### Link de acesso 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+fantastic-gate.surge.sh
 
-### Making a Progressive Web App
+### Desenvolvido por 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Igor Freitas 
+- Leonardo Broca 
+- Marcelo Maia 
+- Maria Lançoni 
+- Pedro Henrique Duarte

@@ -17,7 +17,7 @@ const HomePage = () => {
     useProtectedPage()
     const navigate = useNavigate()
     const { restaurants, setColors, order } = useContext(GlobalStateContext)
-    const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de buscar
+    const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de busca
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
 

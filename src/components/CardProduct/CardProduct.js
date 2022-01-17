@@ -10,6 +10,8 @@ const CardProduct = (props) => {
     const notify = () => toast.success("Adicionado");
     const { cart, setCart } = useContext(GlobalStateContext)
 
+    //Adicionar no carrinho e verificar se já existe
+    
     const addToCart = (prod) => {
         const index = cart.findIndex((i) => i.id === prod.id)
         const newCart = [...cart]
@@ -25,14 +27,15 @@ const CardProduct = (props) => {
 
     return (
         <ContainerCard>
+
             <DivImg>
                 <img src={props.product.photoUrl} alt={'foto do produto'} />
             </DivImg>
+            
             <DivText>
                 <Typography variant={'body1'} color='secondary'>{props.product.name}</Typography>
                 <Typography variant={'subtitle2'} color='error'>{props.product.description}</Typography>
                 <Typography variant={'body1'}>R$ {props.product.price}</Typography>
-                {/* {returnShowSelect()} */}
             </DivText>
 
             <DivButton>
