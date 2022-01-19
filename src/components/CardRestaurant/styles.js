@@ -8,8 +8,9 @@ export const ContainerCard = styled.div`
     height: 230px;
     border: 1px solid #b8b8b8;
     border-radius: 8px;
-    margin-bottom:10px;
+    margin-bottom:5px;
     cursor: pointer;
+    margin-top: 15px;
 `
 
 export const DivImg = styled.img`

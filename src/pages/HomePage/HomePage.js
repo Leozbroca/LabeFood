@@ -11,22 +11,16 @@ import Header from '../../components/Header/Header'
 import LabelBottomNavigation from '../../components/Footer/Footer'
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import ActiveOrderCard from "./ActiveOrderCard";
-import ScreenLoading from "../../components/ScreenLoading/ScreenLoading";
 import axios from "axios";
 import BASE_URL from "../../constants/url";
-import { render } from "react-dom";
-
 
 const HomePage = () => {
     useProtectedPage()
     const navigate = useNavigate()
-    const { restaurants, setRestaurants, setColors, order } = useContext(GlobalStateContext)
+    const { restaurants, setRestaurants, setColors, order, loading } = useContext(GlobalStateContext)
     const { form, onChangeInput } = useForm({ restaurant: '' }) //Campo de busca
     const [text, setText] = useState('') //Busca pré definida
     const [control, setControl] = useState(0) //Controla busca por tipo de comida
-    
-    let tokenToRender = localStorage.getItem('token')
-    
 
     useLayoutEffect(() => {
         setColors.setColorHome('#5cb646')
@@ -168,12 +162,11 @@ const HomePage = () => {
             return listRestaurants
         }
     }
- 
+
     return (
 
         <MainContainer>
             <Header title={'Future Eats'} />
-
             <DivForm>
                 <StyledInput
                     name='restaurant'
@@ -203,7 +196,7 @@ const HomePage = () => {
 
             <DivCards>
                 {renderRestaurant()}
-                {order === null ? <></> : <ActiveOrderCard
+                {loading === false || order == null? <></> : <ActiveOrderCard
                     restaurantName={order.restaurantName}
                     totalPrice={order.totalPrice} />}
             </DivCards>

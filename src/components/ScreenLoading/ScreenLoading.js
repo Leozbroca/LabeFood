@@ -6,7 +6,7 @@ const ScreenLoading = () => {
 
     return (
         <ContainerScreen>
-            <img src={logo}/>
+            <img src={logo} />
         </ContainerScreen>
     )
 

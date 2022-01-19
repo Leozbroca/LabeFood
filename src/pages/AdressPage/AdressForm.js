@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useNavigate } from "react-router"
 import useForm from "../../hooks/useForm"
 import { addAdress } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
+import GlobalStateContext from "../../globalContext/GlobalStateContext";
 
 const AdressForm = () => {
+    const { control, setControl } = useContext(GlobalStateContext)
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const { form, onChangeInput, clear } = useForm(
@@ -15,15 +17,13 @@ const AdressForm = () => {
             city: '',
             state: '',
             complement: ''
-    }) 
-    
+        })
 
     // Enviar form
     const onSubmitForm = (event) => {
         event.preventDefault()
-        addAdress(form, clear, token, navigate)
+        addAdress(form, clear, token, navigate, control, setControl)
     }
-
 
     return (
         <DivForm>

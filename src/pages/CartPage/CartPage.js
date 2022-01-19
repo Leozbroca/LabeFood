@@ -35,7 +35,7 @@ import axios from "axios";
 
 const CartPage = () => {
   useProtectedPage()
-  const { cart, setCart, setColors, count, setCount, restaurantDetail, control, setControl } = useContext(GlobalStateContext);
+  const { cart, setCart, setColors, count, setCount, restaurantDetail, control, setControl, setLoading } = useContext(GlobalStateContext);
   const [valueToPay, setValueToPay] = useState(0)
   const [value, setValue] = useState('');
   const getAddress = useRequestData([], `${BASE_URL}/profile/address`)
@@ -55,6 +55,9 @@ const CartPage = () => {
     setColors.setColorProfile('')
     onChangeValue()
   }, [cart])
+
+  // Contante para servir como parâmetro de sumir o card de pedido em andamento
+  const timeOrder = details && details.deliveryTime * 60 * 1000
 
   //Calculo de preço
   const onChangeValue = () => {
@@ -101,6 +104,13 @@ const CartPage = () => {
         }
       })
         .then((res) => {
+          setLoading(true)
+          setControl(control + 1)
+          setTimeout(() => {
+            setLoading(false);
+            setControl(control + 1)
+          }, timeOrder);
+
           setControl(control + 1)
           let timerInterval
           Swal.fire({
@@ -209,7 +219,7 @@ const CartPage = () => {
       <DivPayment>
 
         <p>Forma de pagamento</p>
-        
+
         <hr />
         <FormControl component="fieldset">
           <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
