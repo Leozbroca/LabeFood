@@ -7,11 +7,6 @@ import logo from "../../assets/logo-future-eats-2.png"
 import { MainContainer } from "./styles";
 import ScreenLoading from "../../components/ScreenLoading/ScreenLoading";
 import { useState } from "react";
-import axios from "axios";
-
-
- 
- 
 
 const LoginPage = () => {
     
@@ -22,13 +17,11 @@ const LoginPage = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        }, 3000);
+        }, 2000);
     }, []);
 
     return (
-
         <>
-
             {isLoading ?
 
                 <ScreenLoading />
@@ -41,7 +34,6 @@ const LoginPage = () => {
                         <p><b>Não possui cadastro? Clique aqui.</b></p>
                     </div>
                 </MainContainer>}
-
         </>
 
     )
