@@ -1,6 +1,6 @@
-# Projeto LabeFoods - FutureEats
+# [Projeto LabeFoods](https://carver-labefood5.surge.sh/) - FutureEats
 
-Status do Projeto: Concluído. 
+Status do Projeto: Concluído. :white_check_mark:
 
 ### Sobre o Projeto
 
@@ -51,11 +51,11 @@ como framework. Layout para mobile.
 
 ### API utilizada
 
-https://documenter.getpostman.com/view/7549981/SWTEdGtT
+- [LabeFood](https://documenter.getpostman.com/view/7549981/SWTEdGtT)
 
 ### Link de acesso 
 
-http://future-answer.surge.sh/
+https://carver-labefood5.surge.sh/
 
 ### Desenvolvido por 
 
