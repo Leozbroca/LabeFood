@@ -5,9 +5,6 @@ import { login } from "../../services/user"
 import { DivForm, StyledButton, StyledInput } from "./styles"
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 import GlobalStateContext from "../../globalContext/GlobalStateContext";
-import BASE_URL from "../../constants/url"
-import axios from "axios"
-import { goToHome } from "../../router/coordinator"
 
 const LoginForm = () => {
     useUnprotectedPage()

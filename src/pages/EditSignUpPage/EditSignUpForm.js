@@ -41,6 +41,7 @@ const EditSignUpForm = () => {
                     onChange={onChangeInput}
                     label="CPF"
                     variant="outlined"
+                    placeholder='000.000.000-00'
                 />
 
                 <StyledButton color='secondary' variant="contained" type="submit"><b>Salvar</b></StyledButton>

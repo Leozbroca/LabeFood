@@ -22,21 +22,21 @@ export const login = (body, clear, navigate, value, setValue) => {
         })
 }
 
-export const signup = (body, clear, navigate) => {
+export const signup = (body, clear, navigate, value, setValue) => {
     axios
         .post(`${BASE_URL}/signup`, body)
         .then((res) => {
             localStorage.setItem('token', res.data.token)
             clear()
             goToAdress(navigate)
+            setValue(value +1)
         })
         .catch((err) => {
-            alert(err.response.data.message)
-
+            // alert(err.response.data.message)
         })
 }
 
-export const addAdress = (body, clear, token, navigate) => {
+export const addAdress = (body, clear, token, navigate, value, setValue) => {
     axios
         .put(`${BASE_URL}/address`, body, {
             headers: {
@@ -47,6 +47,7 @@ export const addAdress = (body, clear, token, navigate) => {
             localStorage.setItem('token', res.data.token)
             clear()
             goToHome(navigate)
+            setValue(value +1)
         })
         .catch((err) => {
         })

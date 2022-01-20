@@ -14,7 +14,7 @@ export const GlobalState = (props) => {
     const [order, setOrderValue] = useState({}) //Pedido em andamento
     const [history, setHistoryValue] = useState([]) //Histórico de pedidos.
     const [control, setControl] = useState(0) //Controle para renderizar card do pedido em andamento
-    
+    const [loading, setLoading] = useState(false)
     const token = localStorage.getItem("token")
    
     // Localizar resturantes
@@ -28,8 +28,6 @@ export const GlobalState = (props) => {
                 setRestaurants(res.data.restaurants)
             })
             .catch((err) => {
-                // console.log('err', err.response.data.message)
-                // alert(err.response.data.message)
             })
     }
 
@@ -46,7 +44,6 @@ export const GlobalState = (props) => {
                 setOrderValue(res.data.order)
             })
             .catch((err) => {
-                // console.log(err.response.data.message)
             })
 
     }
@@ -63,7 +60,6 @@ export const GlobalState = (props) => {
                 setHistoryValue(res.data)
             })
             .catch((err) => {
-                // console.log(err.response.data.message)
             })
     }
 
@@ -76,12 +72,16 @@ export const GlobalState = (props) => {
         getRestaurants();
     }, [control])
 
-
     const colors = { colorHome, colorCart, colorProfile }
     const setColors = { setColorHome, setColorCart, setColorProfile }
 
     return (
-        <GlobalStateContext.Provider value={{ restaurants, order, history, cart, setCart, colors, setColors, count, setCount, restaurantDetail, setRestaurantDetail, control, setControl }}>
+        <GlobalStateContext.Provider
+            value={{
+                restaurants, order, history, cart, setCart, colors,
+                setColors, count, setCount, restaurantDetail, setRestaurantDetail,
+                control, setControl, loading, setLoading
+            }}>
             {props.children}
         </GlobalStateContext.Provider>
     )

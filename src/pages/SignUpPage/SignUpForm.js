@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router";
 import { signup } from "../../services/user";
 import { StyledButton, StyledInput, DivForm } from "./styles";
+import GlobalStateContext from "../../globalContext/GlobalStateContext";
 
 const SignUpForm = () => {
+    const { control, setControl } = useContext(GlobalStateContext)
     const { form, onChangeInput, clear } = useForm({ name: '', email: '', cpf: '', password: '' })
     const navigate = useNavigate()
     const [confirm, setConfirm] = useState('')
@@ -13,7 +15,7 @@ const SignUpForm = () => {
     const onSubmitForm = (event) => {
         event.preventDefault()
         if (confirm === form.password) {
-            signup(form, clear, navigate)
+            signup(form, clear, navigate, control, setControl)
         }
     }
 
@@ -51,6 +53,7 @@ const SignUpForm = () => {
                     label="CPF"
                     variant="outlined"
                     required
+                    placeholder='000.000.000-00'
                 />
 
                 <StyledInput
