@@ -15,9 +15,8 @@ export const GlobalState = (props) => {
     const [history, setHistoryValue] = useState([]) //Histórico de pedidos.
     const [control, setControl] = useState(0) //Controle para renderizar card do pedido em andamento
     const [loading, setLoading] = useState(false)
-
     const token = localStorage.getItem("token")
-
+   
     // Localizar resturantes
     const getRestaurants = () => {
         axios.get(`${BASE_URL}/restaurants`, {
@@ -86,4 +85,4 @@ export const GlobalState = (props) => {
             {props.children}
         </GlobalStateContext.Provider>
     )
-} 
+}
